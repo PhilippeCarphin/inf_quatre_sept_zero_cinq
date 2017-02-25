@@ -3,8 +3,12 @@
 #include <fstream>
 #include <iostream>
 #include <string.h>
+#include <list>
 
 typedef std::pair<int, int> Edge;
+/*******************************************************************************
+ * Implements a graph as an adjacency matrix and as an adjacency list
+*******************************************************************************/
 class Graph
 {
 public:
@@ -13,7 +17,7 @@ public:
 	std::vector<int> indegree_0();
 	void add_edge(Edge e);
 
-	std::vector<std::pair<int, int>> adj_list;
+	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
 	int number_of_edges;
 	bool *adj_mat;
@@ -21,6 +25,11 @@ public:
 	int in_degree(int node);
 };
 
+/*******************************************************************************
+ * Constructor for the graph class: The constructor takes a filename as input
+ * and reads the file as a number of nodes and number of edges on the first
+ * line, and the rest of the file is an adjacency list.
+*******************************************************************************/
 Graph::Graph(const char *filename)
 {
 	std::cout << __FUNCTION__ << "() called." << std::endl;
@@ -35,7 +44,52 @@ Graph::Graph(const char *filename)
 		add_edge(e);
 	}
 }
+/*******************************************************************************
+ * Used to connect two nodes in the graph with a directed edge.
+*******************************************************************************/
+void Graph::add_edge(Edge e)
+{
+	adj_mat[index(e.first,e.second)] = 1;
+	adj_list.push_back(e);
+}
 
+/*******************************************************************************
+ * Returns true if there is a directed edge from src to dst and false otherwise..
+*******************************************************************************/
+bool Graph::is_connected(int src, int dst)
+{
+	return adj_mat[index(src,dst)];
+}
+
+/*******************************************************************************
+ * Returns the in_degree of a node, that is, the number of edges coming into the
+ * node.
+*******************************************************************************/
+int Graph::in_degree(int node)
+{
+	int in_deg = 0;
+#if 1
+	for(int i = 0; i < number_of_nodes; i++)
+	{
+		if(is_connected(i,node))
+			in_deg++;
+	}
+#else
+	for( e : adj_list ){
+		// Count the number of edges that have node as their destination.
+		if(e.second == node)
+			in_deg++;
+	}
+#endif
+	return in_deg;
+}
+
+/*******************************************************************************
+ * Returns a list of the virtices in the graph that have in-degree 0, that is
+ * the list of vertices that have no incoming edges.
+ * This function looks at each nodes and adds to the list only the ones that
+ * have in_degree = 0.  It uses the in_degree function.
+*******************************************************************************/
 std::vector<int> Graph::indegree_0()
 {
 	std::vector<int> v;
@@ -45,29 +99,6 @@ std::vector<int> Graph::indegree_0()
 	}
 	return v;
 }
-
-void Graph::add_edge(Edge e)
-{
-	adj_mat[index(e.first,e.second)] = 1;
-	adj_list.push_back(e);
-}
-
-bool Graph::is_connected(int src, int dst)
-{
-	return adj_mat[index(src,dst)];
-}
-
-int Graph::in_degree(int node)
-{
-	int in_deg = 0;
-	for(int i = 0; i < number_of_nodes; i++)
-	{
-		if(is_connected(i,node))
-			in_deg++;
-	}
-	return in_deg;
-}
-
 
 int main(int argc, char **argv)
 {

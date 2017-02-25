@@ -16,6 +16,7 @@ public:
 	bool is_connected(int srt, int dst);
 	std::vector<int> indegree_0();
 	void add_edge(Edge e);
+	std::vector<int> get_longest_chain();
 
 	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
@@ -98,6 +99,58 @@ std::vector<int> Graph::indegree_0()
 
 	}
 	return v;
+}
+
+/*******************************************************************************
+ * Longest chain algorithm
+*******************************************************************************/
+std::vector<int> Graph::get_longest_chain()
+{
+	// Input : this
+	// Output :
+	std::vector<int> longest_chain;
+	// forall v in V pred[v] = -1
+	// Tester que ceci initialise pred[v] a -1 pour chaque v
+	std::vector<int> pred(number_of_nodes,-1);
+	int last = -1;
+
+	// Initialise q queue using in_degree0 function (change function to return a
+	// queue while we're at it).
+	std::list<int> vertex_queue; // = in_degree0();
+
+
+	while(/* queue not empty find the syntax */ 1){
+		// u = pop from the front and remove the element.
+		// last <- u
+		int u = vertex_queue.front();vertex_queue.pop_front(); // pop removes the element but does not return it. Stupid if you ask me.
+		last = u;
+
+		// forall the arcs (u,v) in E (or A for arretes)
+		for( auto e : adj_list){
+			// pred[v] <- u
+			pred[e.second] = e.first;
+
+			// ***** This is why we need a list and not a queue, because
+			// list offers a method for removing an element from the queue,
+			// and it has a method to check whether the list contains an
+			// element.
+			// if Q contains v, (list doesn't have this function)
+			if(/* find the syntax for this or write a function */ 1){
+				// Move v to the end of Q
+				// - remove v from the queue;
+				// - put v at the end of the queue
+			} else {
+				// add v at the end of the queue.
+			}
+		}
+	} // End of while(virtex_queue not empty)
+
+	while( last != -1){
+		longest_chain.push_back(last);
+		last = pred[last];
+	}
+
+	return longest_chain;
 }
 
 int main(int argc, char **argv)

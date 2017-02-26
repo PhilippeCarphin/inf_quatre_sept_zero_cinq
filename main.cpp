@@ -132,9 +132,7 @@ std::vector<int> Graph::get_longest_chain()
 
 			// ***** This is why we need a list and not a queue, because
 			// list offers a method for removing an element from the queue,
-			// and it has a method to check whether the list contains an
-			// element.
-			// if Q contains v, (list doesn't have this function)
+#if 0
 			if(/* find the syntax for this or write a function */ 1){
 				// Move v to the end of Q
 				// - remove v from the queue;
@@ -142,6 +140,14 @@ std::vector<int> Graph::get_longest_chain()
 			} else {
 				// add v at the end of the queue.
 			}
+#endif
+			// Note: Whether or not v was in the queue, we add it at the end of
+			// the queue, so what we could do is
+			virtex_queue.erase(v);
+			virtex_queue.push_back(v);
+			// because in the if and in the else, we put v at the end of the
+			// queue, the only difference is that if v was in the queue, we
+			// remove it to put it at the end.
 		}
 	} // End of while(virtex_queue not empty)
 
@@ -155,6 +161,8 @@ std::vector<int> Graph::get_longest_chain()
 
 int main(int argc, char **argv)
 {
+	// Get filename from argument list
+	// construct graph with that file
 	std::cout << "ALLO" << std::endl;
 	Graph g("./tp2-donnees/poset10-4a");
 	std::cout << g.number_of_nodes << std::endl;

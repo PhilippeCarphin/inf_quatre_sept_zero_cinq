@@ -144,43 +144,33 @@ std::list<int> Graph::indegree_0()
 *******************************************************************************/
 std::list<int> Graph::get_longest_chain()
 {
-	// Input : this
-	// Output :
+	/*
+	 * return value
+	 */
 	std::list<int> longest_chain;
-	// forall v in V pred[v] = -1
-	// Tester que ceci initialise pred[v] a -1 pour chaque v
+
 	std::vector<int> pred(number_of_nodes,-1);
-	for(int v : pred ){std::cout << " vector " << v << " ";}
-	std::cout << std::endl;
+	std::list<int> vertex_queue = indegree_0();
 	int last = -1;
 
-	// Initialise q queue using in_degree0 function (change function to return a
-	// queue while we're at it).
-	std::list<int> vertex_queue = indegree_0();
-
-
 	while(!vertex_queue.empty()){
-		// u = pop from the front and remove the element.
 		int u = vertex_queue.front();vertex_queue.pop_front();
-		// last <- u
 		last = u;
 
-		show_chain(vertex_queue);
-		int x;
-		std::cin >> x;
-		// forall the arcs (u,v) in E (or A for arretes)
+		/*
+		 * For all edges starting at u
+		 */
 		for( auto e : adj_list){
-			// pred[v] <- u
-			int u = e.first;
-			int v = e.second;
-			pred[v] = u;
-
-			move_to_end(vertex_queue, v);
+			if ( e.first == u ){
+				int v = e.second;
+				pred[v] = u;
+				move_to_end(vertex_queue, v);
+			}
 		}
 	}
 
 	while( last != -1){
-		longest_chain.push_back(last);
+		longest_chain.push_front(last);
 		last = pred[last];
 	}
 
@@ -216,10 +206,10 @@ int main(int argc, char **argv)
 	// construct graph with that file
 	Graph g(filename);
 
-	// l = g.get_longest_chain();
-	// show_chain(l);
 	std::cout << "indegree_0 : ";
 	l = g.indegree_0();
+	show_chain(l);
+	l = g.get_longest_chain();
 	show_chain(l);
 	std::cout << g.number_of_nodes << std::endl;
 	return 0;

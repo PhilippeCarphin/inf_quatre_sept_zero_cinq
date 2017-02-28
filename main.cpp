@@ -52,7 +52,7 @@ public:
 	bool is_connected(int srt, int dst);
 	std::list<int> indegree_0();
 	void add_edge(Edge e);
-	std::vector<int> get_longest_chain();
+	std::list<int> get_longest_chain();
 
 	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
@@ -142,14 +142,16 @@ std::list<int> Graph::indegree_0()
 /*******************************************************************************
  * Longest chain algorithm
 *******************************************************************************/
-std::vector<int> Graph::get_longest_chain()
+std::list<int> Graph::get_longest_chain()
 {
 	// Input : this
 	// Output :
-	std::vector<int> longest_chain;
+	std::list<int> longest_chain;
 	// forall v in V pred[v] = -1
 	// Tester que ceci initialise pred[v] a -1 pour chaque v
 	std::vector<int> pred(number_of_nodes,-1);
+	for(int v : pred ){std::cout << " vector " << v << " ";}
+	std::cout << std::endl;
 	int last = -1;
 
 	// Initialise q queue using in_degree0 function (change function to return a
@@ -157,12 +159,15 @@ std::vector<int> Graph::get_longest_chain()
 	std::list<int> vertex_queue = indegree_0();
 
 
-	while(/* queue not empty find the syntax */ 1){
+	while(!vertex_queue.empty()){
 		// u = pop from the front and remove the element.
 		int u = vertex_queue.front();vertex_queue.pop_front();
 		// last <- u
 		last = u;
 
+		show_chain(vertex_queue);
+		int x;
+		std::cin >> x;
 		// forall the arcs (u,v) in E (or A for arretes)
 		for( auto e : adj_list){
 			// pred[v] <- u
@@ -210,6 +215,12 @@ int main(int argc, char **argv)
 
 	// construct graph with that file
 	Graph g(filename);
+
+	// l = g.get_longest_chain();
+	// show_chain(l);
+	std::cout << "indegree_0 : ";
+	l = g.indegree_0();
+	show_chain(l);
 	std::cout << g.number_of_nodes << std::endl;
 	return 0;
 }

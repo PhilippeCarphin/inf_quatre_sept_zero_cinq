@@ -105,19 +105,11 @@ bool Graph::is_connected(int src, int dst)
 int Graph::in_degree(int node)
 {
 	int in_deg = 0;
-#if 1
 	for(int i = 0; i < number_of_nodes; i++)
 	{
 		if(is_connected(i,node))
 			in_deg++;
 	}
-#else
-	for( e : adj_list ){
-		// Count the number of edges that have node as their destination.
-		if(e.second == node)
-			in_deg++;
-	}
-#endif
 	return in_deg;
 }
 

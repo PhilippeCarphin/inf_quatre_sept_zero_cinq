@@ -10,4 +10,4 @@ $(prog):$(file)
 	@echo "$@ compiled"
 
 test:$(prog)
-	./$^
+	./$^ ./tp2-donnees/poset10-4a

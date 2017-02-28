@@ -7,6 +7,42 @@
 
 typedef std::pair<int, int> Edge;
 /*******************************************************************************
+ * Removes a vertex v from list l and puts it at the back
+*******************************************************************************/
+int move_to_end(std::list<int> &l, const int v)
+{
+	for( auto itr = l.begin(); itr != l.end(); itr++)
+	{
+		if (*itr == v)
+		{
+			l.erase(itr);
+			// Phil doesn't use break;
+			goto end;
+		}
+	}
+end:
+	l.push_back(v);
+	return 0;
+}
+
+int show_chain(std::list<int> &l)
+{
+	if( l.empty())
+	{
+		return 0;
+	}
+
+	auto node_itr = l.begin();
+	std::cout << "chain : " << *node_itr;
+	for(node_itr++; node_itr != l.end(); node_itr++){
+		std::cout << " -> " << *node_itr;
+	}
+	std::cout << std::endl;
+
+	return 1;
+}
+
+/*******************************************************************************
  * Implements a graph as an adjacency matrix and as an adjacency list
 *******************************************************************************/
 class Graph
@@ -14,7 +50,7 @@ class Graph
 public:
 	Graph(const char *filename);
 	bool is_connected(int srt, int dst);
-	std::vector<int> indegree_0();
+	std::list<int> indegree_0();
 	void add_edge(Edge e);
 	std::vector<int> get_longest_chain();
 
@@ -91,12 +127,14 @@ int Graph::in_degree(int node)
  * This function looks at each nodes and adds to the list only the ones that
  * have in_degree = 0.  It uses the in_degree function.
 *******************************************************************************/
-std::vector<int> Graph::indegree_0()
+std::list<int> Graph::indegree_0()
 {
-	std::vector<int> v;
-	for(int i = 0; i < number_of_nodes; i++)
+	std::list<int> v;
+	for(int node = 0; node < number_of_nodes; node++)
 	{
-
+		if ( in_degree(node) == 0){
+			v.push_back(node);
+		}
 	}
 	return v;
 }
@@ -116,40 +154,25 @@ std::vector<int> Graph::get_longest_chain()
 
 	// Initialise q queue using in_degree0 function (change function to return a
 	// queue while we're at it).
-	std::list<int> vertex_queue; // = in_degree0();
+	std::list<int> vertex_queue = indegree_0();
 
 
 	while(/* queue not empty find the syntax */ 1){
 		// u = pop from the front and remove the element.
+		int u = vertex_queue.front();vertex_queue.pop_front();
 		// last <- u
-		int u = vertex_queue.front();vertex_queue.pop_front(); // pop removes the element but does not return it. Stupid if you ask me.
 		last = u;
 
 		// forall the arcs (u,v) in E (or A for arretes)
 		for( auto e : adj_list){
 			// pred[v] <- u
-			pred[e.second] = e.first;
+			int u = e.first;
+			int v = e.second;
+			pred[v] = u;
 
-			// ***** This is why we need a list and not a queue, because
-			// list offers a method for removing an element from the queue,
-#if 0
-			if(/* find the syntax for this or write a function */ 1){
-				// Move v to the end of Q
-				// - remove v from the queue;
-				// - put v at the end of the queue
-			} else {
-				// add v at the end of the queue.
-			}
-#endif
-			// Note: Whether or not v was in the queue, we add it at the end of
-			// the queue, so what we could do is
-			virtex_queue.erase(v);
-			virtex_queue.push_back(v);
-			// because in the if and in the else, we put v at the end of the
-			// queue, the only difference is that if v was in the queue, we
-			// remove it to put it at the end.
+			move_to_end(vertex_queue, v);
 		}
-	} // End of while(virtex_queue not empty)
+	}
 
 	while( last != -1){
 		longest_chain.push_back(last);
@@ -161,10 +184,32 @@ std::vector<int> Graph::get_longest_chain()
 
 int main(int argc, char **argv)
 {
+	if (argc < 2){
+		std::cout << "Usage " << argv[0] << " filename" << std::endl;
+		return 1;
+	}
 	// Get filename from argument list
+	const char *filename = argv[1];
+
+	/*
+	 * Testing show_chain function used to test longest chain algorithm
+	 */
+	std::list<int> l;
+	l.push_back(1);
+	l.push_back(2);
+	l.push_back(3);
+	l.push_back(4);
+	l.push_back(5);
+	show_chain(l);
+
+	move_to_end(l, 3);
+	show_chain(l);
+
+
+
+
 	// construct graph with that file
-	std::cout << "ALLO" << std::endl;
-	Graph g("./tp2-donnees/poset10-4a");
+	Graph g(filename);
 	std::cout << g.number_of_nodes << std::endl;
 	return 0;
 }

@@ -177,7 +177,7 @@ std::list<int> Graph::get_longest_chain()
 
 int main(int argc, char **argv)
 {
-	std::cout << "Working directory as seen by the program : " << getenv("PWD") << std::endl;
+	//std::cout << "Working directory as seen by the program : " << system("cd") << std::endl;
 	if (argc < 2){
 		std::cout << "Usage " << argv[0] << " filename" << std::endl;
 		return 1;

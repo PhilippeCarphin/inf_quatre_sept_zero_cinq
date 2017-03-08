@@ -3,3 +3,8 @@
 *.o
 *.out
 graph
+*.obj
+**/debug
+*.sdf
+*.opendb
+**/.vs

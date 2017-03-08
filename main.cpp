@@ -49,6 +49,7 @@ class Graph
 {
 public:
 	Graph(const char *filename);
+	~Graph();
 	bool is_connected(int srt, int dst);
 	std::list<int> indegree_0();
 	void add_edge(Edge e);
@@ -80,6 +81,11 @@ Graph::Graph(const char *filename)
 	while(f >> e.first && f >> e.second){
 		add_edge(e);
 	}
+}
+
+Graph::~Graph()
+{
+
 }
 /*******************************************************************************
  * Used to connect two nodes in the graph with a directed edge.
@@ -171,6 +177,7 @@ std::list<int> Graph::get_longest_chain()
 
 int main(int argc, char **argv)
 {
+	std::cout << "Working directory as seen by the program : " << getenv("PWD") << std::endl;
 	if (argc < 2){
 		std::cout << "Usage " << argv[0] << " filename" << std::endl;
 		return 1;

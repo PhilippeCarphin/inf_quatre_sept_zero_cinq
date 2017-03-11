@@ -85,6 +85,7 @@ Graph::Graph(const char *filename)
 
 Graph::~Graph()
 {
+	delete[] adj_mat;
 
 }
 /*******************************************************************************

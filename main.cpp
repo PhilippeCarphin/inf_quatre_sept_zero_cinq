@@ -83,11 +83,15 @@ Graph::Graph(const char *filename)
 	}
 }
 
+/*******************************************************************************
+ * Destructor for the Graph class.  The only thing to do is free the memory
+ * allocated for the adjacency matrix.
+*******************************************************************************/
 Graph::~Graph()
 {
-	delete[] adj_mat;
-
+	delete this->adj_mat;
 }
+
 /*******************************************************************************
  * Used to connect two nodes in the graph with a directed edge.
 *******************************************************************************/

@@ -83,7 +83,7 @@ Graph::Graph(const char *filename)
 	f >> number_of_edges;
 	removed.resize(number_of_nodes, false);
 	adj_mat = new bool[number_of_nodes*number_of_nodes];
-	memset(adj_mat, 0, number_of_nodes * number_of_nodes * sizeof(bool));	
+	memset(adj_mat, 0, number_of_nodes * number_of_nodes * sizeof(bool));
 	Edge e;
 	while(f >> e.first && f >> e.second){
 		add_edge(e);

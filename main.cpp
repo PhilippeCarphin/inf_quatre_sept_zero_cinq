@@ -55,12 +55,18 @@ public:
 	void add_edge(Edge e);
 	std::list<int> get_longest_chain();
 
+	int add_node(int node);
+	int remove_node(int node);
+
 	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
 	int number_of_edges;
 	bool *adj_mat;
 	int index(int i, int j){return i*number_of_nodes + j;}
 	int in_degree(int node);
+
+	// for doing graph algorithms
+	std::vector<bool> removed;
 };
 
 /*******************************************************************************
@@ -75,6 +81,7 @@ Graph::Graph(const char *filename)
 
 	f >> number_of_nodes;
 	f >> number_of_edges;
+	removed.resize(number_of_nodes, false);
 	adj_mat = new bool[number_of_nodes*number_of_nodes];
 	memset(adj_mat, 0, number_of_nodes * number_of_nodes * sizeof(bool));	
 	Edge e;
@@ -82,6 +89,26 @@ Graph::Graph(const char *filename)
 		add_edge(e);
 	}
 }
+
+/*******************************************************************************
+ * Lazy node removal
+*******************************************************************************/
+int Graph::remove_node(int node)
+{
+	removed[node] = true;
+	return 0;
+}
+
+/*******************************************************************************
+ * Used to add nodes back into the graph that have been lazy-removed for some
+ * algorithms
+*******************************************************************************/
+int Graph::add_node(int node)
+{
+	removed[node] = false;
+	return 0;
+}
+
 
 /*******************************************************************************
  * Destructor for the Graph class.  The only thing to do is free the memory
@@ -118,7 +145,7 @@ int Graph::in_degree(int node)
 	int in_deg = 0;
 	for(int i = 0; i < number_of_nodes; i++)
 	{
-		if(is_connected(i,node))
+		if(is_connected(i,node) && (!removed[i]))
 			in_deg++;
 	}
 	return in_deg;
@@ -216,5 +243,13 @@ int main(int argc, char **argv)
 	l = g.get_longest_chain();
 	show_chain(l);
 	std::cout << g.number_of_nodes << std::endl;
+	std::cout << "Testing node removal: "<< std::endl;
+	std::cout << "Indegree of node 7 (9 has an edge pointing to 7): " << g.in_degree(7) << std::endl;
+	g.remove_node(9);
+	std::cout << "Removing node 9 from graph" << std::endl;
+	std::cout << "Indegree of node 7 (9 has an edge pointing to 7): " << g.in_degree(7) << std::endl;
+	l = g.get_longest_chain();
+	show_chain(l);
+
 	return 0;
 }

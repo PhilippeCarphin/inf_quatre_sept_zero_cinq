@@ -162,7 +162,7 @@ std::list<int> Graph::indegree_0()
 	std::list<int> v;
 	for(int node = 0; node < number_of_nodes; node++)
 	{
-		if ( in_degree(node) == 0){
+		if ( in_degree(node) == 0 && (!removed[node])){
 			v.push_back(node);
 		}
 	}

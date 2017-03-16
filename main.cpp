@@ -59,6 +59,7 @@ public:
 	int add_node(int node);
 	int remove_node(int node);
 	int remove_node_list(std::list<int> l);
+	bool edge_removed(Edge e);
 	int reset_graph();
 
 	std::vector<std::pair<int, int> > adj_list;
@@ -189,6 +190,14 @@ std::list<int> Graph::indegree_0()
 	return v;
 }
 
+bool Graph::edge_removed(Edge e)
+{
+	if(removed[e.first] || removed[e.second])
+		return true;
+	else
+		return false;
+}
+
 /*******************************************************************************
  * Longest chain algorithm
 *******************************************************************************/
@@ -211,10 +220,12 @@ std::list<int> Graph::get_longest_chain()
 		 * For all edges starting at u
 		 */
 		for( auto e : adj_list){
-			if ( e.first == u ){
-				int v = e.second;
-				pred[v] = u;
-				move_to_end(vertex_queue, v);
+			if(!edge_removed(e)){
+				if ( e.first == u ){
+					int v = e.second;
+					pred[v] = u;
+					move_to_end(vertex_queue, v);
+				}
 			}
 		}
 	}

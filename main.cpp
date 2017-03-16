@@ -3,7 +3,6 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include <string.h>
 #include <list>
 
 typedef std::pair<int, int> Edge;
@@ -133,8 +132,7 @@ Graph::Graph(const char *filename)
 	f >> number_of_nodes;
 	f >> number_of_edges;
 	removed.resize(number_of_nodes, false);
-	adj_mat = new bool[number_of_nodes*number_of_nodes];
-	memset(adj_mat, 0, number_of_nodes * number_of_nodes * sizeof(bool));
+	adj_mat = new bool[number_of_nodes*number_of_nodes]();
 	Edge e;
 	while(f >> e.first && f >> e.second){
 		add_edge(e);

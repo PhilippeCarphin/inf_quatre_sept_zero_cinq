@@ -1,4 +1,5 @@
 #include <tuple>
+#include <cmath>
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -61,6 +62,9 @@ public:
 	int remove_node_list(std::list<int> l);
 	bool edge_removed(Edge e);
 	int reset_graph();
+
+	double entropy();
+	double greedy_nle();
 
 	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
@@ -250,8 +254,38 @@ std::list< std::list<int> > Graph::longest_chain_decomp()
 		remove_node_list(longest_chain);
 		longest_chain = get_longest_chain();
 	}
+	reset_graph();
 	return lcd;
 }
+
+/*******************************************************************************
+ * Calculates the entropy of the graph as used to calculate the estimator for
+ * the number of linear extensions.
+*******************************************************************************/
+double Graph::entropy()
+{
+	std::list< std::list<int> > lcd = longest_chain_decomp();
+	double ent = 0;
+	for( auto c : lcd ){
+		double p = (double)c.size()/number_of_nodes;
+		ent -= (p) * std::log2(p);
+	}
+	return ent;
+}
+
+/*******************************************************************************
+ * Estimates the number of linear extensions using the formula
+ * est = 2^(0.5nH)
+ * where n is the number of nodes and H is the entropy of the graph.
+*******************************************************************************/
+double Graph::greedy_nle()
+{
+	double H = entropy();
+	double n = number_of_nodes;
+	return std::exp( 0.5 * n * H * std::log(2));
+}
+
+
 /*******************************************************************************
  * Display function used to show the chain decomposition.
 *******************************************************************************/
@@ -308,6 +342,8 @@ int main(int argc, char **argv)
 	g.reset_graph();
 	std::cout << "Longest chain decomposition" << std::endl;
 	show_list_of_chains(g.longest_chain_decomp());
+	std::cout << "Entropy of g: " << g.entropy() << std::endl;
+	std::cout << "Greedy number of linear extensions of g: " << g.greedy_nle() << std::endl;
 
 
 

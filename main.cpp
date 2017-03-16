@@ -54,9 +54,12 @@ public:
 	std::list<int> indegree_0();
 	void add_edge(Edge e);
 	std::list<int> get_longest_chain();
+	std::list< std::list<int> > longest_chain_decomp();
 
 	int add_node(int node);
 	int remove_node(int node);
+	int remove_node_list(std::list<int> l);
+	int reset_graph();
 
 	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
@@ -109,6 +112,23 @@ int Graph::add_node(int node)
 	return 0;
 }
 
+/*******************************************************************************
+ * Used to remove the nodes of a list in the greedy algorithm
+*******************************************************************************/
+int Graph::remove_node_list(std::list<int> l)
+{
+	for( int node : l ){
+		remove_node(node);
+	}
+	return 0;
+}
+
+int Graph::reset_graph()
+{
+	for(size_t i = 0; i < removed.size(); i++)
+		removed[i] = false;
+	return 0;
+}
 
 /*******************************************************************************
  * Destructor for the Graph class.  The only thing to do is free the memory
@@ -207,6 +227,30 @@ std::list<int> Graph::get_longest_chain()
 	return longest_chain;
 }
 
+/*******************************************************************************
+ * Returns a decomposition of the graph in the form of longest chains.
+*******************************************************************************/
+std::list< std::list<int> > Graph::longest_chain_decomp()
+{
+	std::list< std::list<int> > lcd;
+	std::list<int> longest_chain = get_longest_chain();
+	while(!longest_chain.empty()){
+		lcd.push_front(longest_chain);
+		remove_node_list(longest_chain);
+		longest_chain = get_longest_chain();
+	}
+	return lcd;
+}
+/*******************************************************************************
+ * Display function used to show the chain decomposition.
+*******************************************************************************/
+void show_list_of_chains(std::list< std::list<int> > lc)
+{
+	for( auto c : lc){
+		show_chain(c);
+	}
+}
+
 int main(int argc, char **argv)
 {
 	//std::cout << "Working directory as seen by the program : " << system("cd") << std::endl;
@@ -250,6 +294,11 @@ int main(int argc, char **argv)
 	std::cout << "Indegree of node 7 (9 has an edge pointing to 7): " << g.in_degree(7) << std::endl;
 	l = g.get_longest_chain();
 	show_chain(l);
+	g.reset_graph();
+	std::cout << "Longest chain decomposition" << std::endl;
+	show_list_of_chains(g.longest_chain_decomp());
+
+
 
 	return 0;
 }

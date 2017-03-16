@@ -66,6 +66,10 @@ public:
 	double entropy();
 	double greedy_nle();
 
+	bool empty();
+	int backtrack();
+	void __backtrack(int& count);
+
 	std::vector<std::pair<int, int> > adj_list;
 	int number_of_nodes;
 	int number_of_edges;
@@ -77,6 +81,45 @@ public:
 	std::vector<bool> removed;
 };
 
+/*******************************************************************************
+ * Tells whether the graph is empty
+*******************************************************************************/
+bool Graph::empty()
+{
+	for( bool nr : removed ){
+		if( nr == false )
+			return false;
+	}
+	return true;
+}
+
+/*******************************************************************************
+ * Backtrack routine
+*******************************************************************************/
+int Graph::backtrack()
+{
+	int count = 0;
+	__backtrack(count);
+	return count;
+}
+
+/*******************************************************************************
+ * Backtrack internal routine
+*******************************************************************************/
+void Graph::__backtrack(int& count)
+{
+	if(empty()){
+		count++;
+		return;
+	}
+
+	std::list<int> indegree0 = indegree_0();
+	for( int node : indegree0){
+		remove_node(node);
+		__backtrack(count);
+		add_node(node);
+	}
+}
 /*******************************************************************************
  * Constructor for the graph class: The constructor takes a filename as input
  * and reads the file as a number of nodes and number of edges on the first
@@ -345,6 +388,7 @@ int main(int argc, char **argv)
 	std::cout << "Entropy of g: " << g.entropy() << std::endl;
 	std::cout << "Greedy number of linear extensions of g: " << g.greedy_nle() << std::endl;
 
+	std::cout << "Backtracking algorithm result : " << g.backtrack() << std::endl;
 
 
 	return 0;

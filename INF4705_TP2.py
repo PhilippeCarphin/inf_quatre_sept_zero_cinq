@@ -13,28 +13,29 @@ def make_graph(filename):
 	""" Returns a DAG created with a filename """
 
 	# 0) Create a dag:
-	graph = DAG.DAG()
+	graph = DAG()
 
 	# 0.1) Open a file
-	file = ...
+	# file = ...
 
 	# 1) Get number of edges and number of nodes
-	line = file.readline().splt()
-	n_nodes = int(...)
-	n_edges = int(...)
-	graph.removed = np.zeros((number_of_nodes)) # Crée un numpy array
-	graph.active_nodes = number_of_nodes
+	# line = file.readline().splt()
+	# n_nodes = int(...)
+	# n_edges = int(...)
+	# graph.removed = np.zeros((n_nodes)) # Crée un numpy array
+	# graph.active_nodes = n_nodes
 
 	# 2) Add all the nodes
-	for i in range(n_nodes):
-		graph.add_node(i)
+	# for i in range(n_nodes):
+	#	graph.add_node(i)
 
 	# 3) Add all the edges
-	for i in range(n_edges):
-		line = ... readline.split
-		graph.add_edge(int(line[0]), int(line[1]))
+	#for i in range(n_edges):
+	#	# line = ... readline.split
+	#	# graph.add_edge(int(line[0]), int(line[1]))
+	pass
 
-	return graph
+	# return graph
 
 def lazy_remove(graph, node):
 	if graph.removed[node] == False:

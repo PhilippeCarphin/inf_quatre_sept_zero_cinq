@@ -16,11 +16,11 @@ def make_graph(filename):
 	graph = DAG()
 
 	# 0.1) Open a file
-	# file = ...
+	file = open(filename, "r")
 
 	# 1) Get number of edges and number of nodes
-	# line = file.readline().splt()
-	# n_nodes = int(...)
+	line = file.readline().split()
+	# n_nodes = int()
 	# n_edges = int(...)
 	# graph.removed = np.zeros((n_nodes)) # Crée un numpy array
 	# graph.active_nodes = n_nodes
@@ -33,9 +33,8 @@ def make_graph(filename):
 	#for i in range(n_edges):
 	#	# line = ... readline.split
 	#	# graph.add_edge(int(line[0]), int(line[1]))
-	pass
 
-	# return graph
+	return graph
 
 def lazy_remove(graph, node):
 	if graph.removed[node] == False:
@@ -83,4 +82,4 @@ def test_graph(filename):
 
 if __name__ == "__main__":
 
-	test_graph("poset10-4")
+	test_graph("./tp2-donnees/poset10-4a")

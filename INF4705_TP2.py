@@ -83,6 +83,10 @@ def lazy_remove_list(graph, list):
     for node in list:
         lazy_remove(graph, node)
 
+def lazy_reset(graph):
+    for node in range(graph.size()):
+        lazy_add(graph, node)
+
 def get_longest_chain(graph):
     longest_chain = deque()
 
@@ -111,8 +115,9 @@ def longest_chain_decomp(graph):
     lcd = []
     longest_chain = get_longest_chain(graph)
     while len(longest_chain) > 0:
-        lcd.append(longest_chain)
+        lcd.append(list(longest_chain))
         lazy_remove_list(graph, longest_chain)
+    lazy_reset(graph)
 
     return lcd
 
@@ -123,6 +128,9 @@ def test_graph(filename):
 
     longest_chain = get_longest_chain(graph)
     print(longest_chain)
+
+    lcd = longest_chain_decomp(graph)
+    print(lcd)
     # Reproduire tous les tests qui sont dans main.cpp jusqu'a longest chain.
 
 

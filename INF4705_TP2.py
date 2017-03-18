@@ -74,7 +74,7 @@ def lazy_in_degree_0(graph):
     """ Returns a list of nodes of in-degree 0 taking into
     account lazy-removal """
     in_degree_0 = []
-    for node in range(graph.number_of_nodes):
+    for node in range(graph.size()):
         if lazy_in_degree(graph, node) == 0 and is_active(graph,node):
             in_degree_0.append(node)
     return in_degree_0
@@ -98,7 +98,7 @@ def get_longest_chain(graph):
         for v in graph.graph[u]:
             if v in vertex_queue:
                 vertex_queue.remove(v)
-                vertex_queue.append(v)
+            vertex_queue.append(v)
             pred[v] = u
 
     while last != -1:
@@ -121,6 +121,8 @@ def test_graph(filename):
     graph = make_graph(filename)
     print(graph.graph)
 
+    longest_chain = get_longest_chain(graph)
+    print(longest_chain)
     # Reproduire tous les tests qui sont dans main.cpp jusqu'a longest chain.
 
 

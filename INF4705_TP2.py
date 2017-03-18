@@ -1,13 +1,13 @@
-# Fichier 1 __init__.py que tu renommeras à DAG.py
+# Fichier 1 __init__.py que tu renommeras a DAG.py
 
 # Fichier 2 INF4705_TP2.py ou whatever
 
 from DAG import DAG # Importe la classe DAG du module DAG
 import os
-import sys # pour avoir accès aux arguments de ligne de commande
+import sys # pour avoir acces aux arguments de ligne de commande
 import numpy as np # pip install numpy
 
-""" On avait un fichier python dans le TP1 que tu peux regarder pour savoir comment ouvrir des fichiers avec python.  Commence par hardcoder un path, laisse faire les "command line arguments" pour après que tu aies testé la création d'un graphe. """
+""" On avait un fichier python dans le TP1 que tu peux regarder pour savoir comment ouvrir des fichiers avec python.  Commence par hardcoder un path, laisse faire les "command line arguments" pour apres que tu aies teste la creation d'un graphe. """
 
 def make_graph(filename):
 	""" Returns a DAG created with a filename """
@@ -22,7 +22,7 @@ def make_graph(filename):
 	line = file.readline().split()
 	# n_nodes = int()
 	# n_edges = int(...)
-	# graph.removed = np.zeros((n_nodes)) # Crée un numpy array
+	# graph.removed = np.zeros((n_nodes)) # Cree un numpy array
 	# graph.active_nodes = n_nodes
 
 	# 2) Add all the nodes
@@ -68,7 +68,7 @@ def lazy_in_degree(graph, node):
 			in_degree += 1
 	return in_degree
 
-def lazy_indegree_0(graph):
+def lazy_in_degree_0(graph):
 	""" Returns a list of nodes of in-degree 0 taking into
 	account lazy-removal """
 	in_degree_0 = []
@@ -76,6 +76,12 @@ def lazy_indegree_0(graph):
 		if lazy_in_degree(graph, node) == 0 and is_active(graph,node):
 			in_degree_0.append(node)
 	return in_degree_0
+
+def get_longest_chain(graph):
+	longest_chain = []
+
+	pred = np.full((graph.size()), -1, dtype=int)
+	vertex_queue = lazy_in_degree_0(graph)
 
 
 def test_graph(filename):

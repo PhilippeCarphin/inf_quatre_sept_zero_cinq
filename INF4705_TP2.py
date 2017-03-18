@@ -56,22 +56,26 @@ def lazy_empty(graph):
 	else:
 		return False
 
-def lazy_degree(graph, node):
+def is_active(graph, node):
+	return not graph.removed[node]
+
+def lazy_in_degree(graph, node):
 	""" Calculates the degree of a node while taking into
 	account the nodes that have been lazy-removed """
-	pass
+	in_degree = 0
+	for n in graph.predecessors(node):
+		if is_active(graph, node):
+			in_degree += 1
+	return in_degree
 
 def lazy_indegree_0(graph):
 	""" Returns a list of nodes of in-degree 0 taking into
 	account lazy-removal """
-	indegree_0 = [] #create empty list
+	in_degree_0 = []
 	for node in range(graph.number_of_nodes):
-		# If class DAG doesn't have a number 
-		# of nodes attribute, add it in make_graph.
-		if lazy_degree(graph, node) == 0 and not graph.removed[node]:
-			indegree_0.append(node)
-
-
+		if lazy_in_degree(graph, node) == 0 and is_active(graph,node):
+			in_degree_0.append(node)
+	return in_degree_0
 
 
 def test_graph(filename):

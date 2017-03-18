@@ -29,24 +29,24 @@ def make_graph(filename):
 
     # 2) Add all the nodes
     for i in range(n_nodes):
-    	graph.add_node(i)
+        graph.add_node(i)
 
     # 3) Add all the edges
     for i in range(n_edges):
-    	line = file.readline().split()
+        line = file.readline().split()
         graph.add_edge(int(line[0]), int(line[1]))
 
     return graph
 
 def lazy_remove(graph, node):
-    if graph.removed[node] == False:
+    if graph.removed[node] == True:
         return
 
     graph.removed[node] = True
     graph.active_nodes -= 1
 
 def lazy_add(graph, node):
-    if graph.removed[node] == True:
+    if graph.removed[node] == False:
         return
 
     graph.removed[node] = False
@@ -89,14 +89,12 @@ def lazy_reset(graph):
 
 def get_longest_chain(graph):
     longest_chain = deque()
-
+    last = -1
     pred = np.full((graph.size()), -1, dtype=int)
     vertex_queue = deque(lazy_in_degree_0(graph))
-
     while len(vertex_queue) > 0:
         u = vertex_queue.popleft()
         last = u
-
         # iterating over the descendants of u
         # so we're cheking all edges (u->v) starting at u
         for v in graph.graph[u]:

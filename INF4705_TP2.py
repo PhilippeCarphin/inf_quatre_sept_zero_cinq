@@ -117,6 +117,7 @@ def longest_chain_decomp(graph):
     while len(longest_chain) > 0:
         lcd.append(list(longest_chain))
         lazy_remove_list(graph, longest_chain)
+        longest_chain = get_longest_chain(graph)
     lazy_reset(graph)
 
     return lcd

@@ -21,24 +21,24 @@ class lazy_DAG(object):
             edge = file.readline().split()
             self.adj_dict[int(edge[0])].add(int(edge[1]))
 
-        self.removed = np.zeros((self.n_nodes)) # Cree un numpy array
+        self.active = np.ones((self.n_nodes)) # Cree un numpy array
         self.active_nodes = self.n_nodes
 
     def _is_active(self, node):
-        return not self.removed[node]
+        return self.active[node]
 
     def empty(self):
         return self.active_nodes == 0
 
     def reset(self):
-        self.removed.fill(False)
+        self.active.fill(True)
         self.active_nodes = self.n_nodes
 
     def remove_node(self, node):
-        if self.removed[node]:
+        if not self.active[node]:
             return
         else:
-            self.removed[node] = True
+            self.active[node] = False
             self.active_nodes -= 1
 
     def remove_list(self, l):
@@ -46,10 +46,10 @@ class lazy_DAG(object):
             self.remove_node(node)
 
     def add_node(self, node):
-        if not self.removed[node]:
+        if self.active[node]:
             return
         else:
-            self.removed[node] = False
+            self.active[node] = True
             self.active_nodes += 1
 
     def has_edge(self, u, v):

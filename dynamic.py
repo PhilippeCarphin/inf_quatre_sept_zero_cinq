@@ -8,30 +8,101 @@ def get_dimensions(lcd):
         dims.append(len(c))
     return np.array(dims)
 
+def decr(j, ps):
+    return ps[:j] + (ps[j] - 1,) + ps[j+1:]
+
 class Dynamic(object):
     def __init__(self, graph, lcd):
+        """ Creates an array to be filled by the dynamic programming algotithm.
+        PARAMETERS
+        ==========
+            graph:  Reference to the graph.
+            lcd: A decomposition of the graph into chains.
+
+        ATTRIBUTES
+        ==========
+
+            n_dims : The number of dimensions of the array
+            lcd_dims : the length of the chains.  This corresponds to the m_k's
+                       in the enonce
+            arr_dims : This is a list of m_k + 1.  Indeed, we can look at the
+                       example and notice that the array is 3x3 whereas the
+                       chains are of length 2.
+            array : a numpy array that will be filled by the dynamic programming
+                    algorithm.
+        """
         self.graph = graph
         self.lcd = lcd
         # Calculate dimensions
-        self.lcd_dims = get_dimensions(self.lcd)
-        self.n_dims = len(self.lcd_dims)
-        self.arr_dims = [d+1 for d in self.lcd_dims]
-        # Create array with '-1's everywhere
+        self.n_dims = len(lcd)
+        self.lcd_dims = tuple([len(c) for c in lcd])
+        self.arr_dims = tuple([d+1 for d in self.lcd_dims])
+        # Create array with '-1's everywhere so we are able to tell whether or
+        # not a value has already been calculated.
         self.array = np.full(self.arr_dims, -1, dtype=int)
+        self.array[tuple([0 for i in self.arr_dims])] = 1
     def c(self,j,i_j):
         """ Returns the ith member of the jth chain """
-        assert i_j < self.lcd_dims[j], "i_j = {}, dims[j] = {}".format(i_j, self.lcd_dims[j])
-        return self.lcd[j][i_j]
+        assert i_j <= self.lcd_dims[j], "i_j = {}, dims[j] = {}".format(i_j, self.lcd_dims[j])
+        return self.lcd[j][i_j-1]
     def delta(self, j, ps):
+        if j < 0: return 0
         """ Retuns the value delta_j for a given set of subscripts """
         for l in range(self.n_dims):
+            """ Don't check when k == j, it makes no sense """
             if l == j: continue
             """ If there exists l such that (c^j_ij, c^l_il) in A """
             if self.graph.has_edge(self.c(j,ps[j]), self.c(l, ps[l])):
                 return 0
+
         """ There doesn't exist l such that (c^j_ij, c^l_il) in A """
         return 1
+    def __str__(self):
+        return """ graph : {}
+    lcd : {}
+    n_dims : {}
+    lcd_dims : {}
+    array_dims : {}
+    array :
+{} """.format(self.graph.adj_dict, self.lcd, self.n_dims, self.lcd_dims,
+    self.arr_dims, self.array)
 
+    def set_index(self, ps):
+        """ if ps has the form (0,...,0,n,0,...,0), that is it has only one
+        non-zero element, then we are asking for the number of linear extensions
+        for a chain of lenght n.  There is only one linear extension. """
+        # num_non_zero = 0
+        # for i in ps:
+        #     if i != 0:
+        #         num_non_zero += 1
+
+        # if num_non_zero <= 1:
+        #     self.array[ps] = 1
+        # else:
+        """ value = the sum of other elements in the array as described in that
+        formula. """
+        value = self.sum_of_adjacents(ps)
+        print("set_index({}) setting to {}".format(ps, value))
+        self.array[ps] = value
+
+
+    def sum_of_adjacents(self, ps):
+        value = 0
+        for j in [i for i in range(self.n_dims) if ps[i] > 0]:
+            if self.delta(j,ps) == 0: continue
+            new_ps = decr(j, ps) # copy
+
+            if self.array[new_ps] == -1:
+                self.set_index(new_ps)
+
+            # print("  array({}) = {}".format(ps, self.array[tuple(ps)]))
+            value += self.array[new_ps]
+        # print(" ... Setting array({}) to {}".format(ps, value))
+        return value
+
+    def fill(self):
+        self.set_index(self.lcd_dims)
+        return self.array[tuple(self.lcd_dims)]
 
 if __name__ == "__main__":
     ld = lazy_DAG("./tp2-donnees/poset10-4a")
@@ -54,7 +125,8 @@ if __name__ == "__main__":
     d_enonce = Dynamic(ld, lcd)
     print(ld.adj_dict)
     print(lcd)
-    print("Longest chain decomp dimensions : {}".format(d_enonce.lcd_dims))
-    print("Shape of array : {}".format(d_enonce.array.shape))
-    print("And the array itself ")
-    print(d_enonce.array)
+    tup = (0,1)
+    d_enonce.set_index(tup)
+    # d_enonce.fill()
+    print(d_enonce)
+    # print(d_enonce.fill())

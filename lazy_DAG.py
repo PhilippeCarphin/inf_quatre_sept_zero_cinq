@@ -4,22 +4,33 @@ import numpy as np
 
 
 class lazy_DAG(object):
-    def __init__(self, filename):
-        file = open(filename, "r")
+    def __init__(self, filename=None, ordered_dict=None):
+        if filename != None:
+            file = open(filename, "r")
 
-        first_line = file.readline().split()
-        self.n_nodes = int(first_line[0])
-        self.n_edges = int(first_line[1])
+            first_line = file.readline().split()
+            self.n_nodes = int(first_line[0])
+            self.n_edges = int(first_line[1])
 
-        # 2) Add all the nodes
-        self.adj_dict = OrderedDict()
-        for node in range(self.n_nodes):
-            self.adj_dict[node] = set()
+            # 2) Add all the nodes
+            self.adj_dict = OrderedDict()
+            for node in range(self.n_nodes):
+                self.adj_dict[node] = set()
 
-        # 3) Add all the edges
-        for i in range(self.n_edges):
-            edge = file.readline().split()
-            self.adj_dict[int(edge[0])].add(int(edge[1]))
+            # 3) Add all the edges
+            for i in range(self.n_edges):
+                edge = file.readline().split()
+                self.adj_dict[int(edge[0])].add(int(edge[1]))
+
+        elif ordered_dict != None:
+            self.adj_dict = OrderedDict(ordered_dict)
+            self.n_nodes = 0
+            self.n_edges = 0
+            for node in ordered_dict:
+                self.n_nodes += 1
+                self.n_edges += len(ordered_dict[node])
+        else:
+            raise exception
 
         self.active = np.ones((self.n_nodes)) # Cree un numpy array
         self.active_nodes = self.n_nodes
@@ -74,9 +85,14 @@ class lazy_DAG(object):
     def in_degree_0(self):
         return [v for v in self.nodes() if self.in_degree(v) == 0]
 
+    def transitive_closure(self):
+        adj_dict = OrderedDict(self.adj_dict)
+
 
 if __name__ == "__main__":
     ld = lazy_DAG("./tp2-donnees/poset10-4a")
+    ld2 = lazy_DAG(ordered_dict=ld.adj_dict)
+    ld2.adj_dict[0] = "COCK"
     print(ld.adj_dict)
     print("in_degree_0():")
     print(ld.in_degree_0())

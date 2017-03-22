@@ -85,8 +85,33 @@ class lazy_DAG(object):
     def in_degree_0(self):
         return [v for v in self.nodes() if self.in_degree(v) == 0]
 
+    def adj_mat(self):
+        mat = np.zeros((self.n_nodes, self.n_nodes), dtype=bool)
+        for u in self.adj_dict:
+            for v in self.adj_dict[u]:
+                mat[u,v] = 1
+        return mat
+    def transitive_close_mat(self, mat):
+        for k in range(self.n_nodes):
+            for i in range(self.n_nodes):
+                for j in range(self.n_nodes):
+                    mat[i,j] = mat[i,j] or (mat[i,k] and mat[k,j])
+    def adj_mat_to_adj_dict(self, mat):
+        new_dict = OrderedDict()
+        for u in range(self.n_nodes):
+            new_dict[u] = set()
+        for u in range(self.n_nodes):
+            for v in range(self.n_nodes):
+                if mat[u,v]:
+                    new_dict[u].add(v)
+        print(new_dict)
     def transitive_closure(self):
-        adj_dict = OrderedDict(self.adj_dict)
+        mat = self.adj_mat()
+        transitive_close_mat(mat)
+        new_dict = self.adj_mat_to_adj_dict(mat)
+        new_graph = lazy_DAG(new_dict)
+
+
 
 
 if __name__ == "__main__":
@@ -99,4 +124,7 @@ if __name__ == "__main__":
     ld.remove_node(9)
     print("in_degree_0(): after removing 9")
     print(ld.in_degree_0())
+    ld.add_node(9)
+    mat = ld.adj_mat()
+    ld.adj_mat_to_adj_dict(mat)
 

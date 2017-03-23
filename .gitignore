@@ -8,3 +8,7 @@ graph
 *.sdf
 *.opendb
 **/.vs
+*.pyc
+*.gch
+.idea/
+change.sh

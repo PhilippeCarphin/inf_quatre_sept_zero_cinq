@@ -63,6 +63,9 @@ class lazy_DAG(object):
             self.active[node] = True
             self.active_nodes += 1
 
+    def add_edge(self, u,v):
+        self.adj_dict[u].add(v)
+
     def has_edge(self, u, v):
         assert (self._is_active(u) and self._is_active(v))
         assert u < self.n_nodes and v < self.n_nodes
@@ -106,18 +109,18 @@ class lazy_DAG(object):
                     new_dict[u].add(v)
         print(new_dict)
     def transitive_closure(self):
-        mat = self.adj_mat()
-        transitive_close_mat(mat)
-        new_dict = self.adj_mat_to_adj_dict(mat)
-        new_graph = lazy_DAG(new_dict)
-
-
-
+        for u in self.adj_dict:
+            nodes_seen = []
+            node_queue = deque(self.adj_dict[u])
+            while len(node_queue) != 0:
+                v = node_queue.popleft()
+                nodes_seen.append(v)
+                self.add_edge(u,v)
+                node_queue += [v for v in self.adj_dict[v] if v not in nodes_seen]
 
 if __name__ == "__main__":
     ld = lazy_DAG("./tp2-donnees/poset10-4a")
     ld2 = lazy_DAG(ordered_dict=ld.adj_dict)
-    ld2.adj_dict[0] = "COCK"
     print(ld.adj_dict)
     print("in_degree_0():")
     print(ld.in_degree_0())
@@ -127,4 +130,6 @@ if __name__ == "__main__":
     ld.add_node(9)
     mat = ld.adj_mat()
     ld.adj_mat_to_adj_dict(mat)
+    ld.transitive_closure()
+
 

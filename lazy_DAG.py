@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# Inspired by https://github.com/thieman/py-dag
 from collections import OrderedDict
 from collections import deque
 import numpy as np

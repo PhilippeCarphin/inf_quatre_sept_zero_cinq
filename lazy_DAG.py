@@ -4,7 +4,15 @@ import numpy as np
 
 
 class lazy_DAG(object):
-    def __init__(self, filename=None, ordered_dict=None):
+    def __init__(self, filename=None, ordered_dict=None, lazy_dag=None):
+        # Attributes
+        self.n_nodes = 0
+        self.n_edges = 0
+        self.adj_dict = OrderedDict()
+        self.active = None
+        self.active_nodes = 0
+
+        # Initialization from filename
         if filename != None:
             file = open(filename, "r")
 
@@ -22,6 +30,7 @@ class lazy_DAG(object):
                 edge = file.readline().split()
                 self.adj_dict[int(edge[0])].add(int(edge[1]))
 
+        # Initialization from other ordered dictionnary
         elif ordered_dict != None:
             self.adj_dict = OrderedDict(ordered_dict)
             self.n_nodes = 0
@@ -36,16 +45,21 @@ class lazy_DAG(object):
         self.active_nodes = self.n_nodes
 
     def _is_active(self, node):
+        """ Returns True if a node is active """
         return self.active[node]
 
     def empty(self):
+        """ Returns true if the graph is empty in the sense that it either has
+        no nodes or has had all of it's nodes removed """
         return self.active_nodes == 0
 
     def reset(self):
+        """ Resets all the nodes to active """
         self.active.fill(True)
         self.active_nodes = self.n_nodes
 
     def remove_node(self, node):
+        """ Lazy removes a node from the graph """
         if not self.active[node]:
             return
         else:
@@ -53,10 +67,14 @@ class lazy_DAG(object):
             self.active_nodes -= 1
 
     def remove_list(self, l):
+        """ Lazy removes a list of nodes from the graph """
         for node in l:
             self.remove_node(node)
 
     def add_node(self, node):
+        """ Lazy adds a node to the graph.  This only works for nodes that were
+        added to the internal graph during creation.  That is you can only add a
+        node that was lazy removed """
         if self.active[node]:
             return
         else:

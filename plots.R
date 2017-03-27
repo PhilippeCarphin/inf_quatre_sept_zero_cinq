@@ -8,9 +8,6 @@ write_csv <- function(algo, data=avg)
 					  c("n_nodes", "n_edges",  "time", "number") # select columns
 				  ]
 
-	# Order table by number of nodes, then number of edges
-	table <- table[order( table[,"n_nodes"], table[,"n_edges"]),]
-
 	# Print table to console
 	print(paste(c("Algo ", algo), collapse=" "))
 	print(table, row.names=FALSE)
@@ -50,6 +47,9 @@ df <- read.table("Data/master_data.csv", header = TRUE, sep = ",")
 
 # Aggregate the data with averages for same (series, algorithm)
 avgs <- aggregate( df[c("time", "number")], by=df[c("algo","n_nodes","n_edges","series")], mean)
+avgs <- avgs[order( avgs[,"n_nodes"], avgs[,"n_edges"]),]
+avgs$ratio_edge <- avgs$time / avgs$n_edges
+avgs$ratio_node <- avgs$time / avgs$n_nodes
 
 # Make a log-log graph
 plot_page(filename="Graphs/avg-loglog.pdf", data=avgs)
@@ -58,3 +58,4 @@ plot_page(filename="Graphs/avg-loglog.pdf", data=avgs)
 for(algo in c("entropy", "backtrack", "dynamic")){
 	write_csv(algo=algo, data=avgs)
 }
+avgs

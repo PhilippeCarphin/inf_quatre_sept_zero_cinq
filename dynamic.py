@@ -113,13 +113,13 @@ class Dynamic(object):
 
 def time_dynamic(filename):
     ld = lazy_DAG(filename)
-    start = time.time()
+    start_time = time.time()
     lcd = c.longest_chain_decomp(ld)
     d = Dynamic(ld, lcd)
     number = d.fill()
-    end = time.time()
-    duration = end - start
-    return (duration, number)
+    end_time = time.time()
+    duration = end_time - start_time
+    return duration, number
 
 if __name__ == "__main__":
     assert time_dynamic("./tp2-donnees/poset10-4a")[1] == 1984

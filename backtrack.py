@@ -17,6 +17,16 @@ class Backtrack(object):
             self.__backtrack(graph)
             graph.add_node(u)
 
+def time_backtrack(filename):
+    ld = lazy_DAG("./tp2-donnees/poset10-4a")
+    start_time = time.time()
+    b = Backtrack()
+    number = b(ld)
+    end_time = time.time()
+    duration = end_time - start_time
+    return duration, number
+
+
 if __name__ == "__main__":
     ld = lazy_DAG("./tp2-donnees/poset10-4a")
     print(ld.adj_dict)

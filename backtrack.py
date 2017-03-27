@@ -1,4 +1,5 @@
 from lazy_DAG import lazy_DAG
+import sys
 import time
 
 class Backtrack(object):
@@ -18,22 +19,35 @@ class Backtrack(object):
             graph.add_node(u)
 
 def time_backtrack(filename):
-    ld = lazy_DAG("./tp2-donnees/poset10-4a")
+    """
+    Returns the time taken by the backtracking algorithm and the number of
+    linear extensions
+    """
+    ld = lazy_DAG(filename)
     start_time = time.time()
     b = Backtrack()
     number = b(ld)
     end_time = time.time()
-    duration = end_time - start_time
+    duration = int( 1000000 * (end_time - start_time))
     return duration, number
 
 
 if __name__ == "__main__":
-    ld = lazy_DAG("./tp2-donnees/poset10-4a")
-    print(ld.adj_dict)
-    start = time.time()
-    b = Backtrack()
-    end = time.time()
-    duration = end - start
-    print("Number of linear extensions using backtrack {}".format(b(ld)))
+    if len(sys.argv) == 1:
+        ld = lazy_DAG("./tp2-donnees/poset10-4a")
+        start = time.time()
+        b = Backtrack()
+        end = time.time()
+        duration = end - start
+        assert b(ld) == 1984
+        print("Test passed")
+    elif sys.argv >= 2:
+        filename = sys.argv[1]
+        duration, number = time_backtrack(filename)
+
+        if len(sys.argv) == 2:
+            print(duration)
+        elif len(sys.argv) == 3:
+            print("Backtrack on file {} returned {} in {}us".format(filename, number, duration))
 
 

@@ -118,11 +118,22 @@ def time_dynamic(filename):
     d = Dynamic(ld, lcd)
     number = d.fill()
     end_time = time.time()
-    duration = end_time - start_time
+    duration = int(100000 * (end_time - start_time))
     return duration, number
 
 if __name__ == "__main__":
-    assert time_dynamic("./tp2-donnees/poset10-4a")[1] == 1984
-    assert time_dynamic("./tp2-donnees/poset10-8a")[1] == 332640
-    assert time_dynamic("./tp2-donnees/poset14-8e")[1] == 52972920
-    print("\n{} : Tests passed".format(sys.argv[0]))
+    if len(sys.argv) == 1:
+        assert time_dynamic("./tp2-donnees/poset10-4a")[1] == 1984
+        assert time_dynamic("./tp2-donnees/poset10-8a")[1] == 332640
+        assert time_dynamic("./tp2-donnees/poset14-8e")[1] == 52972920
+        print("\n{} : Tests passed".format(sys.argv[0]))
+    elif sys.argv >= 2:
+        filename = sys.argv[1]
+        duration, number = time_dynamic(filename)
+
+        if len(sys.argv) == 2:
+            print(duration)
+        elif len(sys.argv) == 3:
+            print("Dynamic on file {} returned {} in {}us".format(filename, number, duration))
+
+

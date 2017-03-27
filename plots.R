@@ -1,18 +1,35 @@
-
+#!/usr/local/bin/Rscript
+library(gridExtra)
 write_csv <- function(algo, data=avg)
 {
+	# Select rows where algo == algo
 	table <- avgs[
 					  avgs["algo"] == algo, # Select rows
-					  c("n_nodes", "n_edges",  "time") # select columns
+					  c("n_nodes", "n_edges",  "time", "number") # select columns
 				  ]
+
+	# Order table by number of nodes, then number of edges
+	table <- table[order( table[,"n_nodes"], table[,"n_edges"]),]
+
+	# Print table to console
+	print(paste(c("Algo ", algo), collapse=" "))
 	print(table, row.names=FALSE)
-	write.table(table, paste(c(algo, ".csv"), collapse=""), row.names=FALSE)
+
+	# Write table to csv file
+	filename = paste(c("Data/",algo, ".csv"), collapse="")
+	write.table(table, filename, row.names=FALSE)
+
+	# Save pdf of the table
+	title <- paste(c("Data/Moyennes_", algo,".pdf"), collapse="")
+	pdf(title)
+	grid.table(table)
+	dev.off()
 }
 
-plot_page <- function(title="Graphs/Graph.pdf", data=df)
+plot_page <- function(filename="Graphs/Graph.pdf", data=df)
 {
-	pdf(title, width=8.5, height=11)
-	par(mfrow=c(5,3))
+	pdf(filename, width=7.5, height=4)
+	par(mfrow=c(2,3))
 	# Do each graph except for (Algo=counting, Series=2)
 	for(algo in c("backtrack","dynamic","entropy")){
 		title <- paste(c("Algorithme ", algo), collapse="")
@@ -27,12 +44,17 @@ plot_page <- function(title="Graphs/Graph.pdf", data=df)
 	dev.off()
 }
 
-df <- read.table("master_data.csv", header = TRUE, sep = ",")
-avgs <- aggregate( df["time"], by=df[c("algo","n_nodes","n_edges","series")], mean)
 
+# Read the raw data
+df <- read.table("Data/master_data.csv", header = TRUE, sep = ",")
 
-# plot_page(title="Graphs/avg-loglog.pdf", data=avgs)
-write_csv("dynamic", avgs)
-# for(algo in c("entropy", "backtrack", "dynamic")){
-#	write_csv(algo=algo, data=avgs)
-#}
+# Aggregate the data with averages for same (series, algorithm)
+avgs <- aggregate( df[c("time", "number")], by=df[c("algo","n_nodes","n_edges","series")], mean)
+
+# Make a log-log graph
+plot_page(filename="Graphs/avg-loglog.pdf", data=avgs)
+
+# Write the csv's and the
+for(algo in c("entropy", "backtrack", "dynamic")){
+	write_csv(algo=algo, data=avgs)
+}

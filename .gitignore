@@ -12,3 +12,6 @@ graph
 *.gch
 .idea/
 change.sh
+*.csv
+.Rdata
+.Rhistory

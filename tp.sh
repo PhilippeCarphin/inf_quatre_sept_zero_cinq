@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#
+# Parse the command line arguments
+#
 algo=backtrack
 ex_path='tp2-donnees/poset10-4a'
 pretty=
@@ -18,6 +21,9 @@ do
 			;;
 		-p|--print)
 			pretty=yes
+			;;
+		-t|--time)
+			print_time=yes
 			;;
         *)
             echo "unknown option: $option"
@@ -44,4 +50,4 @@ case $algo in
 		;;
 esac
 
-echo "$ex_path $algo $duration"
+echo "$duration"

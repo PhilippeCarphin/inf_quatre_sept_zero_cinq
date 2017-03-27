@@ -1,6 +1,7 @@
 from lazy_DAG import lazy_DAG
 import numpy as np
 import chains as c
+import time
 
 def get_dimensions(lcd):
     dims = []
@@ -147,6 +148,7 @@ if __name__ == "__main__":
     print("==============================================================================")
 
     print("++++++ Testing on the graph in the enonce ++++++")
+    start = time.time()
     lcd = c.longest_chain_decomp(ld)
     lcd = [[1,3],[2,0]]
     d_enonce = Dynamic(ld, lcd)
@@ -160,4 +162,7 @@ if __name__ == "__main__":
     ld = lazy_DAG("./tp2-donnees/poset10-4a")
     lcd = c.longest_chain_decomp(ld)
     d1 = Dynamic(ld, lcd)
+    end = time.time()
+    duration = end - start
     print(d1.fill())
+    print("Performance: ", duration)

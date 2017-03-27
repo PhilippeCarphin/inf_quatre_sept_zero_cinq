@@ -1,6 +1,7 @@
 import lazy_DAG
 from collections import deque
 from lazy_DAG import lazy_DAG
+import time
 
 class Chain(deque):
     def __init__(self, pred_dict, last):
@@ -45,8 +46,11 @@ if __name__ == "__main__":
     ld = lazy_DAG("./tp2-donnees/poset10-4a")
     print(ld.adj_dict)
     print("Longest chain:")
+    start = time.time()
     print(longest_chain(ld))
 
     lcd = longest_chain_decomp(ld)
+    end = time.time()
+    duration = end - start
     print("Longest chain: decomposition")
     print(lcd)

@@ -23,7 +23,7 @@ def time_entropy(filename):
     lcd = ch.longest_chain_decomp(ld)
     number = greedy_estimator(ld,lcd)
     end_time = time.time()
-    duration = int( 1000000 * (end_time - start_time))
+    duration = int( 1000 * (end_time - start_time))
     return duration, number
 
 if __name__ == "__main__":
@@ -39,8 +39,8 @@ if __name__ == "__main__":
         duration, number = time_entropy(filename)
 
         if len(sys.argv) == 2:
-            print(duration)
+            print("{},{}".format(duration,int(number)))
         elif len(sys.argv) == 3:
-            print("Entropy on file {} returned {} in {}us".format(filename, number, duration))
+            print("Entropy on file {} returned {} in {}ms".format(filename, number, duration))
 
 

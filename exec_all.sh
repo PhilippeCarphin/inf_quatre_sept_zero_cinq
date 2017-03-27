@@ -1,8 +1,8 @@
 data_dir=./tp2-donnees
 max_time=1
 echo "algo,series,letter,n_nodes,n_edges,time,number"
-for algo in dynamic backtrack entropy; do
-	for ex in $(ls $data_dir); do
+for ex in $(ls $data_dir); do
+	for algo in dynamic backtrack entropy; do
 		path=$data_dir/$ex
 		letter=${ex: -1}
 		series=$( echo $ex | sed 's/poset\([0-9]*-[0-9]*\)[a-j]/\1/')

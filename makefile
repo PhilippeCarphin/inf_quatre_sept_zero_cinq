@@ -1,7 +1,7 @@
 PYFILES=$(wildcard *.py)
 BASH_FILES=$(wildcard *.sh)
-DATA_FILE=master_data.csv
-FAILED_FILE=failed.txt
+DATA_FILE=Data/master_data.csv
+FAILED_FILE=Data/failed.txt
 
 vars:
 	@echo "pyfiles : $(PYFILES)"

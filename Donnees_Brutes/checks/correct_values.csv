@@ -1,0 +1,845 @@
+ex,calculated_value,true_value
+
+poset10-4a,
+calculated : 1984,
+      true : 1984
+
+poset10-4b,
+calculated : 716,
+      true : 716
+
+poset10-4c,
+calculated : 964,
+      true : 964
+
+poset10-4d,
+calculated : 784,
+      true : 784
+
+poset10-4e,
+calculated : 1773,
+      true : 1773
+
+poset10-4f,
+calculated : 4190,
+      true : 4190
+
+poset10-4g,
+calculated : 1954,
+      true : 1954
+
+poset10-4h,
+calculated : 224,
+      true : 224
+
+poset10-4i,
+calculated : 560,
+      true : 560
+
+poset10-4j,
+calculated : 700,
+      true : 700
+
+poset10-6a,
+calculated : 25200,
+      true : 25200
+
+poset10-6b,
+calculated : 97920,
+      true : 97920
+
+poset10-6c,
+calculated : 38160,
+      true : 38160
+
+poset10-6d,
+calculated : 30240,
+      true : 30240
+
+poset10-6e,
+calculated : 75600,
+      true : 75600
+
+poset10-6f,
+calculated : 37800,
+      true : 37800
+
+poset10-6g,
+calculated : 16560,
+      true : 16560
+
+poset10-6h,
+calculated : 95760,
+      true : 95760
+
+poset10-6i,
+calculated : 29520,
+      true : 29520
+
+poset10-6j,
+calculated : 73440,
+      true : 73440
+
+poset10-8a,
+calculated : 332640,
+      true : 332640
+
+poset10-8b,
+calculated : 241920,
+      true : 241920
+
+poset10-8c,
+calculated : 544320,
+      true : 544320
+
+poset10-8d,
+calculated : 453600,
+      true : 453600
+
+poset10-8e,
+calculated : 453600,
+      true : 453600
+
+poset10-8f,
+calculated : 403200,
+      true : 403200
+
+poset10-8g,
+calculated : 483840,
+      true : 483840
+
+poset10-8h,
+calculated : 453600,
+      true : 453600
+
+poset10-8i,
+calculated : 302400,
+      true : 302400
+
+poset10-8j,
+calculated : 332640,
+      true : 332640
+
+poset14-10a,
+calculated : 2421619200,
+      true : 2421619200
+
+poset14-10b,
+calculated : 2270268000,
+      true : 2270268000
+
+poset14-10c,
+calculated : 1452971520,
+      true : 1452971520
+
+poset14-10d,
+calculated : 1816214400,
+      true : 1816214400
+
+poset14-10e,
+calculated : 1452971520,
+      true : 1452971520
+
+poset14-10f,
+calculated : 3995671680,
+      true : 3995671680
+
+poset14-10g,
+calculated : 1150269120,
+      true : 1150269120
+
+poset14-10h,
+calculated : 1574052480,
+      true : 1574052480
+
+poset14-10i,
+calculated : 2421619200,
+      true : 2421619200
+
+poset14-10j,
+calculated : 2724321600,
+      true : 2724321600
+
+poset14-4a,
+calculated : 62696,
+      true : 62696
+
+poset14-4b,
+calculated : 476476,
+      true : 476476
+
+poset14-4c,
+calculated : 86868,
+      true : 86868
+
+poset14-4d,
+calculated : 42120,
+      true : 42120
+
+poset14-4e,
+calculated : 59896,
+      true : 59896
+
+poset14-4f,
+calculated : 216482,
+      true : 216482
+
+poset14-4g,
+calculated : 298872,
+      true : 298872
+
+poset14-4h,
+calculated : 204338,
+      true : 204338
+
+poset14-4i,
+calculated : 1313295,
+      true : 1313295
+
+poset14-4j,
+calculated : 624812,
+      true : 624812
+
+poset14-6a,
+calculated : 4406248,
+      true : 4406248
+
+poset14-6b,
+calculated : 1595664,
+      true : 1595664
+
+poset14-6c,
+calculated : 13588848,
+      true : 13588848
+
+poset14-6d,
+calculated : 14414400,
+      true : 14414400
+
+poset14-6e,
+calculated : 7316400,
+      true : 7316400
+
+poset14-6f,
+calculated : 55648320,
+      true : 55648320
+
+poset14-6g,
+calculated : 50761620,
+      true : 50761620
+
+poset14-6h,
+calculated : 46546500,
+      true : 46546500
+
+poset14-6i,
+calculated : 27220788,
+      true : 27220788
+
+poset14-6j,
+calculated : 7657944,
+      true : 7657944
+
+poset14-8a,
+calculated : 390810420,
+      true : 390810420
+
+poset14-8b,
+calculated : 224071848,
+      true : 224071848
+
+poset14-8c,
+calculated : 126486360,
+      true : 126486360
+
+poset14-8d,
+calculated : 85044960,
+      true : 85044960
+
+poset14-8e,
+calculated : 52972920,
+      true : 52972920
+
+poset14-8f,
+calculated : 14414400,
+      true : 14414400
+
+poset14-8g,
+calculated : 226017792,
+      true : 226017792
+
+poset14-8h,
+calculated : 183338064,
+      true : 183338064
+
+poset14-8i,
+calculated : 320938800,
+      true : 320938800
+
+poset14-8j,
+calculated : 160095936,
+      true : 160095936
+
+poset18-10a,
+calculated : 705019593600,
+      true : 705019593600
+
+poset18-10b,
+calculated : 115867874304,
+      true : 115867874304
+
+poset18-10c,
+calculated : 478692789120,
+      true : 478692789120
+
+poset18-10d,
+calculated : 863140320000,
+      true : 863140320000
+
+poset18-10e,
+calculated : 191681925120,
+      true : 191681925120
+
+poset18-10f,
+calculated : 908363937600,
+      true : 908363937600
+
+poset18-10g,
+calculated : 606073196160,
+      true : 606073196160
+
+poset18-10h,
+calculated : 567668305080,
+      true : 567668305080
+
+poset18-10i,
+calculated : 359026862400,
+      true : 359026862400
+
+poset18-10j,
+calculated : 593570648160,
+      true : 593570648160
+
+poset18-4a,
+calculated : 427998,
+      true : 427998
+
+poset18-4b,
+calculated : 16370420,
+      true : 16370420
+
+poset18-4c,
+calculated : 17471078,
+      true : 17471078
+
+poset18-4d,
+calculated : 3944424,
+      true : 3944424
+
+poset18-4e,
+calculated : 2571720,
+      true : 2571720
+
+poset18-4f,
+calculated : 3663532,
+      true : 3663532
+
+poset18-4g,
+calculated : 2842662,
+      true : 2842662
+
+poset18-4h,
+calculated : 4705201,
+      true : 4705201
+
+poset18-4i,
+calculated : 17149960,
+      true : 17149960
+
+poset18-4j,
+calculated : 726430,
+      true : 726430
+
+poset18-6a,
+calculated : 229764012,
+      true : 229764012
+
+poset18-6b,
+calculated : 312153020,
+      true : 312153020
+
+poset18-6c,
+calculated : 430848372,
+      true : 430848372
+
+poset18-6d,
+calculated : 3348322302,
+      true : 3348322302
+
+poset18-6e,
+calculated : 703743660,
+      true : 703743660
+
+poset18-6f,
+calculated : 164685326,
+      true : 164685326
+
+poset18-6g,
+calculated : 251090685,
+      true : 251090685
+
+poset18-6h,
+calculated : 35678604,
+      true : 35678604
+
+poset18-6i,
+calculated : 1068066576,
+      true : 1068066576
+
+poset18-6j,
+calculated : 1521364158,
+      true : 1521364158
+
+poset18-8a,
+calculated : 24747615360,
+      true : 24747615360
+
+poset18-8b,
+calculated : 234984391488,
+      true : 234984391488
+
+poset18-8c,
+calculated : 78110343360,
+      true : 78110343360
+
+poset18-8d,
+calculated : 8633999304,
+      true : 8633999304
+
+poset18-8e,
+calculated : 102115039338,
+      true : 102115039338
+
+poset18-8f,
+calculated : 16228051812,
+      true : 16228051812
+
+poset18-8g,
+calculated : 63006862374,
+      true : 63006862374
+
+poset18-8h,
+calculated : 18730568448,
+      true : 18730568448
+
+poset18-8i,
+calculated : 22096649664,
+      true : 22096649664
+
+poset18-8j,
+calculated : 56174898528,
+      true : 56174898528
+
+poset22-10a,
+calculated : 470276713621792,
+      true : 470276713621792
+
+poset22-10b,
+calculated : 103914528928056,
+      true : 103914528928056
+
+poset22-10c,
+calculated : 377763237985716,
+      true : 377763237985716
+
+poset22-10d,
+calculated : 48788319215662,
+      true : 48788319215662
+
+poset22-10e,
+calculated : 72863352543960,
+      true : 72863352543960
+
+poset22-10f,
+calculated : 180741345933856,
+      true : 180741345933856
+
+poset22-10g,
+calculated : 39170789316120,
+      true : 39170789316120
+
+poset22-10h,
+calculated : 18895538135232,
+      true : 18895538135232
+
+poset22-10i,
+calculated : 213268530871890,
+      true : 213268530871890
+
+poset22-10j,
+calculated : 84382922522646,
+      true : 84382922522646
+
+poset22-4a,
+calculated : 4354368,
+      true : 4354368
+
+poset22-4b,
+calculated : 61053356,
+      true : 61053356
+
+poset22-4c,
+calculated : 202860,
+      true : 202860
+
+poset22-4d,
+calculated : 105288250,
+      true : 105288250
+
+poset22-4e,
+calculated : 70768494,
+      true : 70768494
+
+poset22-4f,
+calculated : 40080441,
+      true : 40080441
+
+poset22-4g,
+calculated : 9261420,
+      true : 9261420
+
+poset22-4h,
+calculated : 24393680,
+      true : 24393680
+
+poset22-4i,
+calculated : 28459166,
+      true : 28459166
+
+poset22-4j,
+calculated : 5487543,
+      true : 5487543
+
+poset22-6a,
+calculated : 373014778496,
+      true : 373014778496
+
+poset22-6b,
+calculated : 105377421916,
+      true : 105377421916
+
+poset22-6c,
+calculated : 178249922640,
+      true : 178249922640
+
+poset22-6d,
+calculated : 6686206418,
+      true : 6686206418
+
+poset22-6e,
+calculated : 36713234838,
+      true : 36713234838
+
+poset22-6f,
+calculated : 30195038032,
+      true : 30195038032
+
+poset22-6g,
+calculated : 161551613642,
+      true : 161551613642
+
+poset22-6h,
+calculated : 59212119966,
+      true : 59212119966
+
+poset22-6i,
+calculated : 28340662596,
+      true : 28340662596
+
+poset22-6j,
+calculated : 18967237166,
+      true : 18967237166
+
+poset22-8a,
+calculated : 3827116143422,
+      true : 3827116143422
+
+poset22-8b,
+calculated : 2572446186820,
+      true : 2572446186820
+
+poset22-8c,
+calculated : 3721073044334,
+      true : 3721073044334
+
+poset22-8d,
+calculated : 21491823780,
+      true : 21491823780
+
+poset22-8e,
+calculated : 17387226673672,
+      true : 17387226673672
+
+poset22-8f,
+calculated : 871553358984,
+      true : 871553358984
+
+poset22-8g,
+calculated : 1538149030572,
+      true : 1538149030572
+
+poset22-8h,
+calculated : 2785367193208,
+      true : 2785367193208
+
+poset22-8i,
+calculated : 3558491999680,
+      true : 3558491999680
+
+poset22-8j,
+calculated : 5202436696482,
+      true : 5202436696482
+
+poset26-10a,
+calculated : 71442927261641000,
+      true : 71442927261641000
+
+poset26-10c,
+calculated : 400390237438048,
+      true : 400390237438048
+
+poset26-10d,
+calculated : 915783116676764,
+      true : 915783116676764
+
+poset26-10f,
+calculated : 7789705996698080,
+      true : 7789705996698080
+
+poset26-10g,
+calculated : 245092632348362,
+      true : 245092632348362
+
+poset26-10h,
+calculated : 365756634051168,
+      true : 365756634051168
+
+poset26-10i,
+calculated : 959068157992468,
+      true : 959068157992468
+
+poset26-4a,
+calculated : 5027586016,
+      true : 5027586016
+
+poset26-4b,
+calculated : 192937716,
+      true : 192937716
+
+poset26-4c,
+calculated : 1623284724,
+      true : 1623284724
+
+poset26-4d,
+calculated : 383117122,
+      true : 383117122
+
+poset26-4e,
+calculated : 7536060,
+      true : 7536060
+
+poset26-4f,
+calculated : 45968140,
+      true : 45968140
+
+poset26-4g,
+calculated : 4727173643,
+      true : 4727173643
+
+poset26-4h,
+calculated : 157788704,
+      true : 157788704
+
+poset26-4i,
+calculated : 246024216,
+      true : 246024216
+
+poset26-4j,
+calculated : 17625766189,
+      true : 17625766189
+
+poset26-6a,
+calculated : 1468032715653,
+      true : 1468032715653
+
+poset26-6b,
+calculated : 8516112523355,
+      true : 8516112523355
+
+poset26-6c,
+calculated : 2436220650681,
+      true : 2436220650681
+
+poset26-6d,
+calculated : 479895527172,
+      true : 479895527172
+
+poset26-6e,
+calculated : 200578522120,
+      true : 200578522120
+
+poset26-6f,
+calculated : 5441057538262,
+      true : 5441057538262
+
+poset26-6g,
+calculated : 618710764924,
+      true : 618710764924
+
+poset26-6h,
+calculated : 111143548890,
+      true : 111143548890
+
+poset26-6i,
+calculated : 13345674180,
+      true : 13345674180
+
+poset26-6j,
+calculated : 174035874090,
+      true : 174035874090
+
+poset26-8a,
+calculated : 15601389446800,
+      true : 15601389446800
+
+poset26-8b,
+calculated : 2195913690336,
+      true : 2195913690336
+
+poset26-8c,
+calculated : 5079655916452,
+      true : 5079655916452
+
+poset26-8d,
+calculated : 3792475462250,
+      true : 3792475462250
+
+poset26-8e,
+calculated : 1903720800162,
+      true : 1903720800162
+
+poset26-8f,
+calculated : 46825463717440,
+      true : 46825463717440
+
+poset26-8g,
+calculated : 529771863996,
+      true : 529771863996
+
+poset26-8h,
+calculated : 7273276289940,
+      true : 7273276289940
+
+poset26-8i,
+calculated : 840855352102,
+      true : 840855352102
+
+poset26-8j,
+calculated : 38700987528034,
+      true : 38700987528034
+
+poset30-4a,
+calculated : 41605488,
+      true : 41605488
+
+poset30-4b,
+calculated : 12012774390,
+      true : 12012774390
+
+poset30-4c,
+calculated : 22840199949,
+      true : 22840199949
+
+poset30-4d,
+calculated : 1938339394,
+      true : 1938339394
+
+poset30-4e,
+calculated : 12557286180,
+      true : 12557286180
+
+poset30-4f,
+calculated : 507504486,
+      true : 507504486
+
+poset30-4g,
+calculated : 233076312,
+      true : 233076312
+
+poset30-4h,
+calculated : 1281428588,
+      true : 1281428588
+
+poset30-4i,
+calculated : 497333232,
+      true : 497333232
+
+poset30-4j,
+calculated : 20396670388,
+      true : 20396670388
+
+poset30-6a,
+calculated : 13491196511360,
+      true : 13491196511360
+
+poset30-6b,
+calculated : 34967693975760,
+      true : 34967693975760
+
+poset30-6c,
+calculated : 5025479392188,
+      true : 5025479392188
+
+poset30-6d,
+calculated : 572399446446,
+      true : 572399446446
+
+poset30-6e,
+calculated : 902272789449,
+      true : 902272789449
+
+poset30-6f,
+calculated : 1582766356092,
+      true : 1582766356092
+
+poset30-6g,
+calculated : 4490863134408,
+      true : 4490863134408
+
+poset30-6h,
+calculated : 1387384726464,
+      true : 1387384726464
+
+poset30-6i,
+calculated : 34038489241761,
+      true : 34038489241761
+
+poset30-8a,
+calculated : 47446973196099800,
+      true : 47446973196099800
+
+poset30-8b,
+calculated : 910183993162544,
+      true : 910183993162544
+
+poset30-8e,
+calculated : 397756611919788,
+      true : 397756611919788
+
+poset30-8f,
+calculated : 704641817996189,
+      true : 704641817996189
+
+poset30-8j,
+calculated : 4426273794786360,
+      true : 4426273794786360

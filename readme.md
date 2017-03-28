@@ -18,6 +18,7 @@ Le code est dans le dossier racine
 * tp.sh : interface pour utiliser les algorithmes selon l'interface standard
   pour Sam.
 * exec_all.sh : script qui exécute les algorithmes sur tous les exemplaires 
+* plots.R : Script R pour la génération de graphiques et tableaux
 
 Notes: Chaque classe implémente la mesure de temps des algorithmes.
 
@@ -33,6 +34,14 @@ Les données brutes sont dans le dossier *Donnees_brutes*
   séparées par algorithmes
 
 * failed.txt: Les exemplairs pour lesquels des algos ont échoué.
+
+Le dossier *Data* contient des données traitées en format csv et pdf dont
+certains sont utilisés pour le rapport.
+
+Graphes:
+========
+
+Le dossier *Graphs* contient les graphes pour le rapport.
 
 Vérification:
 =============

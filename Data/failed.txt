@@ -1,21 +1,3 @@
-Algo backtrack failed for ex poset10-6b by timeout
-Algo backtrack failed for ex poset10-6c by timeout
-Algo backtrack failed for ex poset10-6d by timeout
-Algo backtrack failed for ex poset10-6e by timeout
-Algo backtrack failed for ex poset10-6f by timeout
-Algo backtrack failed for ex poset10-6h by timeout
-Algo backtrack failed for ex poset10-6i by timeout
-Algo backtrack failed for ex poset10-6j by timeout
-Algo backtrack failed for ex poset10-8a by timeout
-Algo backtrack failed for ex poset10-8b by timeout
-Algo backtrack failed for ex poset10-8c by timeout
-Algo backtrack failed for ex poset10-8d by timeout
-Algo backtrack failed for ex poset10-8e by timeout
-Algo backtrack failed for ex poset10-8f by timeout
-Algo backtrack failed for ex poset10-8g by timeout
-Algo backtrack failed for ex poset10-8h by timeout
-Algo backtrack failed for ex poset10-8i by timeout
-Algo backtrack failed for ex poset10-8j by timeout
 Algo backtrack failed for ex poset14-10a by timeout
 Algo backtrack failed for ex poset14-10b by timeout
 Algo backtrack failed for ex poset14-10c by timeout
@@ -26,18 +8,6 @@ Algo backtrack failed for ex poset14-10g by timeout
 Algo backtrack failed for ex poset14-10h by timeout
 Algo backtrack failed for ex poset14-10i by timeout
 Algo backtrack failed for ex poset14-10j by timeout
-Algo backtrack failed for ex poset14-4a by timeout
-Algo backtrack failed for ex poset14-4b by timeout
-Algo backtrack failed for ex poset14-4c by timeout
-Algo backtrack failed for ex poset14-4d by timeout
-Algo backtrack failed for ex poset14-4e by timeout
-Algo backtrack failed for ex poset14-4f by timeout
-Algo backtrack failed for ex poset14-4g by timeout
-Algo backtrack failed for ex poset14-4h by timeout
-Algo backtrack failed for ex poset14-4i by timeout
-Algo backtrack failed for ex poset14-4j by timeout
-Algo backtrack failed for ex poset14-6a by timeout
-Algo backtrack failed for ex poset14-6b by timeout
 Algo backtrack failed for ex poset14-6c by timeout
 Algo backtrack failed for ex poset14-6d by timeout
 Algo backtrack failed for ex poset14-6e by timeout
@@ -66,16 +36,10 @@ Algo backtrack failed for ex poset18-10g by timeout
 Algo backtrack failed for ex poset18-10h by timeout
 Algo backtrack failed for ex poset18-10i by timeout
 Algo backtrack failed for ex poset18-10j by timeout
-Algo backtrack failed for ex poset18-4a by timeout
 Algo backtrack failed for ex poset18-4b by timeout
 Algo backtrack failed for ex poset18-4c by timeout
-Algo backtrack failed for ex poset18-4d by timeout
-Algo backtrack failed for ex poset18-4e by timeout
-Algo backtrack failed for ex poset18-4f by timeout
-Algo backtrack failed for ex poset18-4g by timeout
 Algo backtrack failed for ex poset18-4h by timeout
 Algo backtrack failed for ex poset18-4i by timeout
-Algo backtrack failed for ex poset18-4j by timeout
 Algo backtrack failed for ex poset18-6a by timeout
 Algo backtrack failed for ex poset18-6b by timeout
 Algo backtrack failed for ex poset18-6c by timeout
@@ -96,24 +60,18 @@ Algo backtrack failed for ex poset18-8g by timeout
 Algo backtrack failed for ex poset18-8h by timeout
 Algo backtrack failed for ex poset18-8i by timeout
 Algo backtrack failed for ex poset18-8j by timeout
-Algo dynamic failed for ex poset22-10a by timeout
 Algo backtrack failed for ex poset22-10a by timeout
-Algo dynamic failed for ex poset22-10b by timeout
 Algo backtrack failed for ex poset22-10b by timeout
-Algo dynamic failed for ex poset22-10c by timeout
 Algo backtrack failed for ex poset22-10c by timeout
 Algo backtrack failed for ex poset22-10d by timeout
 Algo backtrack failed for ex poset22-10e by timeout
-Algo dynamic failed for ex poset22-10f by timeout
 Algo backtrack failed for ex poset22-10f by timeout
 Algo backtrack failed for ex poset22-10g by timeout
 Algo backtrack failed for ex poset22-10h by timeout
-Algo dynamic failed for ex poset22-10i by timeout
 Algo backtrack failed for ex poset22-10i by timeout
 Algo backtrack failed for ex poset22-10j by timeout
 Algo backtrack failed for ex poset22-4a by timeout
 Algo backtrack failed for ex poset22-4b by timeout
-Algo backtrack failed for ex poset22-4c by timeout
 Algo backtrack failed for ex poset22-4d by timeout
 Algo backtrack failed for ex poset22-4e by timeout
 Algo backtrack failed for ex poset22-4f by timeout
@@ -181,25 +139,33 @@ Algo backtrack failed for ex poset26-8g by timeout
 Algo backtrack failed for ex poset26-8h by timeout
 Algo backtrack failed for ex poset26-8i by timeout
 Algo backtrack failed for ex poset26-8j by timeout
-Algo dynamic failed for ex poset30-10a by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10a by timeout
-Algo dynamic failed for ex poset30-10b by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10b by timeout
-Algo dynamic failed for ex poset30-10c by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10c by timeout
-Algo dynamic failed for ex poset30-10d by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10d by timeout
-Algo dynamic failed for ex poset30-10e by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10e by timeout
-Algo dynamic failed for ex poset30-10f by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10f by timeout
-Algo dynamic failed for ex poset30-10g by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10g by timeout
-Algo dynamic failed for ex poset30-10h by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10h by timeout
-Algo dynamic failed for ex poset30-10i by timeout
 Algo backtrack failed for ex poset30-10i by timeout
-Algo dynamic failed for ex poset30-10j by timeout
+dynamic.py:107: RuntimeWarning: overflow encountered in long_scalars
+  value += self.array[new_ps]
 Algo backtrack failed for ex poset30-10j by timeout
 Algo backtrack failed for ex poset30-4a by timeout
 Algo backtrack failed for ex poset30-4b by timeout
@@ -222,12 +188,3 @@ Algo backtrack failed for ex poset30-6h by timeout
 Algo backtrack failed for ex poset30-6i by timeout
 Algo backtrack failed for ex poset30-6j by timeout
 Algo backtrack failed for ex poset30-8a by timeout
-Algo backtrack failed for ex poset30-8b by timeout
-Algo backtrack failed for ex poset30-8c by timeout
-Algo backtrack failed for ex poset30-8d by timeout
-Algo backtrack failed for ex poset30-8e by timeout
-Algo backtrack failed for ex poset30-8f by timeout
-Algo backtrack failed for ex poset30-8g by timeout
-Algo backtrack failed for ex poset30-8h by timeout
-Algo backtrack failed for ex poset30-8i by timeout
-Algo backtrack failed for ex poset30-8j by timeout

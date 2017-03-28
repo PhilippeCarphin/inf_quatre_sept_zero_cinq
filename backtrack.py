@@ -28,7 +28,7 @@ def time_backtrack(filename):
     b = Backtrack()
     number = b(ld)
     end_time = time.time()
-    duration = int( 1000 * (end_time - start_time))
+    duration = int( 1000000 * (end_time - start_time))
     return duration, number
 
 

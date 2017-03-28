@@ -1,5 +1,5 @@
 data_dir=./tp2-donnees
-max_time=1
+max_time=180
 echo "algo,series,letter,n_nodes,n_edges,time,number"
 for ex in $(ls $data_dir); do
 	for algo in dynamic backtrack entropy; do

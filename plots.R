@@ -1,55 +1,41 @@
 #!/usr/local/bin/Rscript
 library(gridExtra)
-write_csv <- function(algo, data=avg)
+write_csv <- function(algo, data=avg, cas=boner)
 {
 	# Select rows where algo == algo
-	table <- avgs[
-					  avgs["algo"] == algo, # Select rows
-					  c("n_nodes", "n_edges",  "time", "number") # select columns
+	table <- data[
+					  data["algo"] == algo, # Select rows
+					  c("n_nodes", "n_edges",  "time") # select columns
 				  ]
 
-	# Print table to console
-	# print(paste(c("Algo ", algo), collapse=" "))
-	# print(table, row.names=FALSE)
+	# File will be saved in Data/ directory and named with what case it is
+	filename = paste(c("Data/",algo,"_",cas), collapse="")
 
 	# Write table to csv file
-	filename = paste(c("Data/",algo, ".csv"), collapse="")
-	write.table(table, filename, row.names=FALSE)
+	csv_filename = paste(c(filename,".csv"), collapse="")
+	write.table(table, csv_filename, row.names=FALSE,sep=",")
 
 	# Save pdf of the table
-	title <- paste(c("Data/Moyennes_", algo,".pdf"), collapse="")
-	pdf(title)
+	pdf_filename = paste(c(filename,".pdf"), collapse="")
+	pdf(pdf_filename)
 	grid.table(table)
 	dev.off()
 }
 
-plot_log_log <- function(filename="Graphs/Graph.pdf", data=df)
+plot_algos <- function(filename, data, x="n_edges", y="time", log="")
 {
-	pdf(filename, width=7.5, height=4)
-	par(mfrow=c(2,3))
+	pdf(filename, width=8.5, height=11)
+	par(mfrow=c(3,3))
 	# Do each graph except for (Algo=counting, Series=2)
-	for(algo in c("backtrack","dynamic","entropy")){
-		title <- paste(c("Algorithme ", algo), collapse="")
-		to_plot <- data[data["algo"]==algo,][,c("n_nodes","time")]
-		plot(to_plot,log="xy",main=title)
-	}
-	for(algo in c("backtrack","dynamic","entropy")){
-		title <- paste(c("Algorithme ", algo), collapse="")
-		to_plot <- data[data["algo"]==algo,][,c("n_edges","time")]
-		plot(to_plot,log="xy",main=title)
-	}
-	dev.off()
-}
-
-plot_algos <- function(filename, data=avg, cols=c("time","n_edges"), log="")
-{
-	pdf(filename, width=7.5, height=4)
-	par(mfrow=c(2,3))
-	# Do each graph except for (Algo=counting, Series=2)
-	for(algo in c("backtrack","dynamic","entropy")){
-		title <- paste(c("Algorithme ", algo), collapse="")
-		to_plot <- data[data["algo"]==algo,][,cols]
-		plot(to_plot,log=log, main=title)
+	cas = c("cas moyen","pire cas", "meilleur cas")
+	i = 1
+	for(d in data){
+		for(algo in c("backtrack","dynamic","entropy")){
+			title <- paste(c("Algorithme ", algo, " en ", cas[i]), collapse="")
+			to_plot <- d[d["algo"]==algo,][,c(x,y)]
+			plot(to_plot,log=log, main=title)
+		}
+		i = i+1
 	}
 	dev.off()
 }
@@ -64,27 +50,49 @@ avgs <- aggregate( df[c("time","number")], by=df[c("algo","n_nodes","n_edges","s
 avgs <- avgs[order( avgs[,"n_nodes"], avgs[,"n_edges"]),]
 avgs$ratio_edge <- avgs$time / avgs$n_edges
 avgs$ratio_edge_squared <- (avgs$time) / ( avgs$n_edges ** 2)
+avgs$edge_squared <- (avgs$n_edges ** 2)
 avgs$ratio_node <- avgs$time / avgs$n_nodes
+avgs$node_squared <- avgs$n_nodes ** 2
 
 max <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], max)
 max$ratio_edge <- max$time / ( max$n_edges ** 2)
 max$ratio_edge_squared <- max$time / ( max$n_edges ** 2)
+max$edge_squared <- (max$n_edges ** 2)
 max$ratio_node <- max$time / max$n_nodes
+max$node_squared <- max$n_nodes ** 2
 
 min <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], min)
-min$ratio_edge <- min$time / ( min$n_edges ** 2)
-min$ratio_edge_squared <- min$time / ( min$n_edges ** 2)
+min$ratio_edge <- min$time / min$n_edges
+min$ratio_edge_squared <- (min$time) / ( min$n_edges ** 2)
+min$edge_squared <- (min$n_edges ** 2)
 min$ratio_node <- min$time / min$n_nodes
+min$node_squared <- min$n_nodes ** 2
+
+data_list = list(avgs,max,min)
 
 # Make a log-log graph
-plot_log_log(filename="Graphs/avg-loglog.pdf", data=avgs)
-plot_algos(filename="Graphs/ratio_edge_squared_avg.pdf", data=avgs, cols=c("ratio_edge_squared","n_edges"))
-plot_algos(filename="Graphs/ratio_edge_avg.pdf", data=avgs, cols=c("ratio_edge","n_edges"))
-plot_algos(filename="Graphs/ratio_node_avg.pdf", data=avgs, cols=c("ratio_node","n_nodes"))
+# plot_log_log(filename="Graphs/avg-loglog.pdf", data=avgs)
+
+plot_algos(filename="Graphs/test_log_log_edge.pdf", data=data_list, x="n_edges",y="time", log="xy")
+plot_algos(filename="Graphs/test_log_log_nodes.pdf", data=data_list, x="n_nodes", y="time", log="xy")
+
+plot_algos(filename="Graphs/test_ratio_edge.pdf", data=data_list, x="n_edges", y="ratio_edge")
+plot_algos(filename="Graphs/test_ratio_node.pdf", data=data_list, x="n_nodes", y="ratio_node")
+plot_algos(filename="Graphs/test_ratio_edge_squared.pdf", data=data_list, x="n_edges", y="ratio_edge_squared")
+
+plot_algos(filename="Graphs/test_const_edge_squared.pdf", data=data_list, x="edge_squared", y="time")
+plot_algos(filename="Graphs/test_const_node_squared.pdf", data=data_list, x="node_squared", y="time")
+
 
 # Write the csv's and the
-for(algo in c("entropy", "backtrack", "dynamic")){
-	write_csv(algo=algo, data=avgs)
+cas = c("cas moyen","pire cas", "meilleur cas")
+i = 1
+for(data in data_list){
+	for(algo in c("entropy", "backtrack", "dynamic")){
+		write_csv(algo=algo, data=data,cas=cas[i])
+	}
+	i = i+1
+
 }
 # avgs[ avgs["algo"] == "dynamic", ]
 # max[ max["algo"] == "dynamic", ]

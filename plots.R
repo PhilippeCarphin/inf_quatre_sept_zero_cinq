@@ -55,6 +55,7 @@ avgs$ratio_node <- avgs$time / avgs$n_nodes
 avgs$node_squared <- avgs$n_nodes ** 2
 
 max <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], max)
+max <- max[order( max[,"n_nodes"], max[,"n_edges"]),]
 max$ratio_edge <- max$time / ( max$n_edges ** 2)
 max$ratio_edge_squared <- max$time / ( max$n_edges ** 2)
 max$edge_squared <- (max$n_edges ** 2)
@@ -62,6 +63,7 @@ max$ratio_node <- max$time / max$n_nodes
 max$node_squared <- max$n_nodes ** 2
 
 min <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], min)
+min <- min[order( min[,"n_nodes"], min[,"n_edges"]),]
 min$ratio_edge <- min$time / min$n_edges
 min$ratio_edge_squared <- (min$time) / ( min$n_edges ** 2)
 min$edge_squared <- (min$n_edges ** 2)

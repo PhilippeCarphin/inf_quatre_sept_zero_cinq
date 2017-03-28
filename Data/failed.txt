@@ -192,3 +192,8 @@ Algo backtrack failed for ex poset30-8b by timeout
 Algo backtrack failed for ex poset30-8c by timeout
 Algo backtrack failed for ex poset30-8d by timeout
 Algo backtrack failed for ex poset30-8e by timeout
+Algo backtrack failed for ex poset30-8f by timeout
+Algo backtrack failed for ex poset30-8g by timeout
+Algo backtrack failed for ex poset30-8h by timeout
+Algo backtrack failed for ex poset30-8i by timeout
+Algo backtrack failed for ex poset30-8j by timeout

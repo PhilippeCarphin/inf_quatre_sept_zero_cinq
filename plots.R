@@ -53,6 +53,10 @@ avgs$ratio_edge_squared <- (avgs$time) / ( avgs$n_edges ** 2)
 avgs$edge_squared <- (avgs$n_edges ** 2)
 avgs$ratio_node <- avgs$time / avgs$n_nodes
 avgs$node_squared <- avgs$n_nodes ** 2
+avgs$ratio_node_squared <- (avgs$time) / (avgs$n_nodes ** 2)
+avgs$node_squared_edge <- ((avgs$n_nodes ** 2)*(avgs$n_edges))
+avgs$ratio_node_squared_edge <- (avgs$time) / ((avgs$n_nodes ** 2)*(avgs$n_edges))
+
 
 max <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], max)
 max <- max[order( max[,"n_nodes"], max[,"n_edges"]),]
@@ -61,6 +65,9 @@ max$ratio_edge_squared <- max$time / ( max$n_edges ** 2)
 max$edge_squared <- (max$n_edges ** 2)
 max$ratio_node <- max$time / max$n_nodes
 max$node_squared <- max$n_nodes ** 2
+max$ratio_node_squared <- (max$time) / (max$n_nodes ** 2)
+max$node_squared_edge <- ((max$n_nodes ** 2)*(max$n_edges))
+max$ratio_node_squared_edge <- (max$time) / ((max$n_nodes ** 2)*(max$n_edges))
 
 min <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], min)
 min <- min[order( min[,"n_nodes"], min[,"n_edges"]),]
@@ -69,6 +76,9 @@ min$ratio_edge_squared <- (min$time) / ( min$n_edges ** 2)
 min$edge_squared <- (min$n_edges ** 2)
 min$ratio_node <- min$time / min$n_nodes
 min$node_squared <- min$n_nodes ** 2
+min$ratio_node_squared <- (min$time) / (min$n_nodes ** 2)
+min$node_squared_edge <- ((min$n_nodes ** 2)*(min$n_edges))
+min$ratio_node_squared_edge <- (min$time) / ((min$n_nodes ** 2)*(min$n_edges))
 
 data_list = list(avgs,max,min)
 
@@ -81,9 +91,11 @@ plot_algos(filename="Graphs/test_log_log_nodes.pdf", data=data_list, x="n_nodes"
 plot_algos(filename="Graphs/test_ratio_edge.pdf", data=data_list, x="n_edges", y="ratio_edge")
 plot_algos(filename="Graphs/test_ratio_node.pdf", data=data_list, x="n_nodes", y="ratio_node")
 plot_algos(filename="Graphs/test_ratio_edge_squared.pdf", data=data_list, x="n_edges", y="ratio_edge_squared")
+plot_algos(filename="Graphs/test_ratio_node_squared.pdf", data=data_list, x="n_nodes", y="ratio_node_squared")
 
 plot_algos(filename="Graphs/test_const_edge_squared.pdf", data=data_list, x="edge_squared", y="time")
 plot_algos(filename="Graphs/test_const_node_squared.pdf", data=data_list, x="node_squared", y="time")
+plot_algos(filename="Graphs/test_const_node_squared_edge.pdf", data=data_list, x="node_squared_edge", y="time")
 
 
 # Write the csv's and the

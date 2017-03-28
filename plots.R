@@ -57,7 +57,6 @@ avgs$ratio_node_squared <- (avgs$time) / (avgs$n_nodes ** 2)
 avgs$node_squared_edge <- ((avgs$n_nodes ** 2)*(avgs$n_edges))
 avgs$ratio_node_squared_edge <- (avgs$time) / ((avgs$n_nodes ** 2)*(avgs$n_edges))
 
-
 max <- aggregate( df[c("time")], by=df[c("algo","n_nodes","n_edges","series")], max)
 max <- max[order( max[,"n_nodes"], max[,"n_edges"]),]
 max$ratio_edge <- max$time / ( max$n_edges ** 2)
@@ -82,9 +81,6 @@ min$ratio_node_squared_edge <- (min$time) / ((min$n_nodes ** 2)*(min$n_edges))
 
 data_list = list(avgs,max,min)
 
-# Make a log-log graph
-# plot_log_log(filename="Graphs/avg-loglog.pdf", data=avgs)
-
 plot_algos(filename="Graphs/test_log_log_edge.pdf", data=data_list, x="n_edges",y="time", log="xy")
 plot_algos(filename="Graphs/test_log_log_nodes.pdf", data=data_list, x="n_nodes", y="time", log="xy")
 
@@ -97,6 +93,13 @@ plot_algos(filename="Graphs/test_const_edge_squared.pdf", data=data_list, x="edg
 plot_algos(filename="Graphs/test_const_node_squared.pdf", data=data_list, x="node_squared", y="time")
 plot_algos(filename="Graphs/test_const_node_squared_edge.pdf", data=data_list, x="node_squared_edge", y="time")
 
+avgs_2 <- aggregate( df[c("time")], by=df[c("algo","n_nodes")], mean)
+max_2 <- aggregate( df[c("time")], by=df[c("algo","n_nodes")], max)
+min_2 <- aggregate( df[c("time")], by=df[c("algo","n_nodes")], min)
+data_list_2 = list(avgs_2,max_2,min_2)
+
+plot_algos(filename="Graphs/log_log_time_vs_nb_noeuds.pdf", data=data_list_2, x="n_nodes", y="time", log="xy")
+plot_algos(filename="Graphs/not_log_time_vs_nb_noeuds.pdf", data=data_list_2, x="n_nodes", y="time", log="")
 
 # Write the csv's and the
 cas = c("cas moyen","pire cas", "meilleur cas")
